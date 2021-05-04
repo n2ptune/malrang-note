@@ -13,7 +13,7 @@ export interface RootState {
 
 export const key: InjectionKey<Store<RootState>> = Symbol()
 
-export const useStore = () => {
+export const useStore: () => ReturnType<typeof baseUseStore> = () => {
   return baseUseStore(key)
 }
 
