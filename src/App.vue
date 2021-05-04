@@ -3,19 +3,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
-import { useStore } from 'vuex'
-import { app } from '@/plugins/firebase'
+import { defineComponent } from 'vue'
+import { injectUserToStore } from '@/services/auth/user'
+import { useStore } from '@/store'
 
 export default defineComponent({
   setup() {
-    const store = useStore()
-
-    onMounted(async () => {
-      app.auth().onAuthStateChanged((user) => {
-        console.log(user)
-      })
-    })
+    injectUserToStore()
   }
 })
 </script>

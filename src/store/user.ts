@@ -1,35 +1,30 @@
 import { Module } from 'vuex'
 import { RootState } from './index'
+import firebase from 'firebase/app'
 
 export interface UserModuleState {
-  name: string
-  email: string
+  currentUser: firebase.User | null
   loggedIn: boolean
 }
 
 export const userModule: Module<UserModuleState, RootState> = {
   namespaced: true,
   state: () => ({
-    name: '',
-    email: '',
+    currentUser: null,
     loggedIn: false
   }),
   mutations: {
-    SET_NAME(state) {
-      state.name = 'test'
-    },
-    SET_USER(state, payload: Pick<UserModuleState, 'email' | 'name'>) {
-      state.name = payload.name
-      state.email = payload.email
-      state.loggedIn = true
+    SET_USER(state, payload: firebase.User | null) {
+      state.currentUser = payload
+      state.loggedIn = !!payload
     }
   },
   getters: {
-    getName(state) {
-      return state.name
+    getCurrentUser(state) {
+      return state.currentUser
     },
-    getEmail(state) {
-      return state.email
+    getLoggedIn(state) {
+      return state.loggedIn
     }
   }
 }
