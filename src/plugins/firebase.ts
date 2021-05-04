@@ -12,4 +12,6 @@ const app = firebase.initializeApp({
   measurementId: process.env.VUE_APP_FB_MEASUREMENT_ID
 })
 
+app.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+
 export { app }

@@ -1,23 +1,21 @@
 <template>
-  <div>Hello Malrang note</div>
-  <div v-if="!firebaseLoaded">Loading Firebase.....</div>
+  <div class="dark:text-red-500 text-brand-primary">Hello Malrang note</div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import firebase from 'firebase'
+import { defineComponent, onMounted } from 'vue'
 import { useStore } from 'vuex'
+import { app } from '@/plugins/firebase'
 
 export default defineComponent({
   setup() {
-    const firebaseLoaded = computed(() => firebase.apps.length)
     const store = useStore()
 
-    console.log(store)
-
-    return {
-      firebaseLoaded
-    }
+    onMounted(async () => {
+      app.auth().onAuthStateChanged((user) => {
+        console.log(user)
+      })
+    })
   }
 })
 </script>
