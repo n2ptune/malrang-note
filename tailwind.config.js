@@ -7,7 +7,9 @@ module.exports = {
         brand: {
           primary: '#A9E34B',
           pale: '#B0D07D',
-          thick: '#95C051'
+          thick: '#95C051',
+          black: '#181818',
+          'black-w': '#2B2B2B'
         }
       }
     }
