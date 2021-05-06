@@ -7,6 +7,8 @@ export interface UserModuleState {
   loggedIn: boolean
 }
 
+export type CurrentUser = firebase.User
+
 export const userModule: Module<UserModuleState, RootState> = {
   namespaced: true,
   state: () => ({

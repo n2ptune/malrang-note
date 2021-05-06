@@ -1,6 +1,8 @@
 <template>
   <main class="grid-cols-12 grid">
-    <section class="left span-2">1</section>
+    <section class="left span-2">
+      <LeftWrapper />
+    </section>
     <section class="center span-2">1</section>
     <section class="right span-8">1</section>
   </main>
@@ -8,10 +10,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import LeftWrapper from '@/components/layouts/LeftWrapper.vue'
 
 export default defineComponent({
-  /* eslint-disable */
-  setup() {}
+  components: {
+    LeftWrapper
+  }
 })
 </script>
 
