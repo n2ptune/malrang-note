@@ -1,8 +1,8 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { initializeApp } from 'firebase/app'
+import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
 import 'firebase/firestore'
 
-const app = firebase.initializeApp({
+initializeApp({
   apiKey: process.env.VUE_APP_FB_API_KEY,
   authDomain: process.env.VUE_APP_FB_AUTH_DOMAIN,
   projectId: process.env.VUE_APP_FB_PROJECT_ID,
@@ -12,6 +12,4 @@ const app = firebase.initializeApp({
   measurementId: process.env.VUE_APP_FB_MEASUREMENT_ID
 })
 
-app.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-
-export { app }
+setPersistence(getAuth(), browserLocalPersistence)

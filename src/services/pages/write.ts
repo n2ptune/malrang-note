@@ -1,6 +1,7 @@
-import { app } from '@/plugins/firebase'
+import { getFirestore, collection } from 'firebase/firestore'
 
 // 첫 시작시 페이지 만들기
 export const initMyPage: () => Promise<void> = async () => {
-  const secretPages = app.firestore().collection('secret_pages')
+  const firestore = getFirestore()
+  const secretPages = collection(firestore, 'secret_pages')
 }
