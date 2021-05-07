@@ -4,17 +4,23 @@
       <LeftWrapper />
     </section>
     <section class="center span-2">1</section>
-    <section class="right span-8">1</section>
+    <section class="right span-8">
+      <RightWrapper />
+    </section>
   </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import LeftWrapper from '@/components/layouts/LeftWrapper.vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 
 export default defineComponent({
   components: {
-    LeftWrapper
+    LeftWrapper: defineAsyncComponent(
+      () => import('@/components/layouts/LeftWrapper.vue')
+    ),
+    RightWrapper: defineAsyncComponent(
+      () => import('@/components/layouts/RightWrapper.vue')
+    )
   }
 })
 </script>
