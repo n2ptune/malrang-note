@@ -1,7 +1,38 @@
-import { getFirestore, collection } from 'firebase/firestore'
+import { getAuth } from '@firebase/auth'
+import {
+  getFirestore,
+  collection,
+  where,
+  query,
+  getDocs,
+  setDoc,
+  doc
+} from 'firebase/firestore'
+
+const firestore = getFirestore()
+
+const checkEmptySecretPage: () => Promise<boolean> = async () => {
+  const secretPages = collection(firestore, 'secret_pages')
+  const user = getAuth().currentUser
+
+  if (!user) return false
+
+  const q = query(secretPages, where('uid', '==', user.uid))
+  const querySnapshot = await getDocs(q)
+
+  return querySnapshot.empty
+}
 
 // 첫 시작시 페이지 만들기
 export const initMyPage: () => Promise<void> = async () => {
-  const firestore = getFirestore()
+  const user = getAuth().currentUser
+  const empty = await checkEmptySecretPage()
+
+  if (!user || !empty) return
+
   const secretPages = collection(firestore, 'secret_pages')
+
+  await setDoc(doc(secretPages), {
+    uid: user.uid
+  })
 }
