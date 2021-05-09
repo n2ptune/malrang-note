@@ -5,11 +5,9 @@ declare module '*.vue' {
   export default component
 }
 
-declare global {
-  export type User = {
-    name: string
-    email: string
-  }
+interface Timestamp {
+  nanoseconds: number
+  seconds: number
 }
 
 declare module '*.svg' {

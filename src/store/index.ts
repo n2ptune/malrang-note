@@ -6,9 +6,11 @@ import {
   createLogger
 } from 'vuex'
 import { userModule, UserModuleState } from './user'
+import { privatePageModule, PrivatePageModuleState } from './private'
 
 export interface RootState {
   user: UserModuleState
+  private: PrivatePageModuleState
 }
 
 export const key: InjectionKey<Store<RootState>> = Symbol()
@@ -17,11 +19,12 @@ export const useStore = () => {
   return baseUseStore(key)
 }
 
-export default createStore({
+export default createStore<RootState>({
   mutations: {},
   actions: {},
   modules: {
-    user: userModule
+    user: userModule,
+    private: privatePageModule
   },
   plugins: process.env.NODE_ENV === 'development' ? [createLogger()] : undefined
 })
