@@ -3,6 +3,16 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {}
+        },
+        dark: {
+          css: {
+            color: theme('colors.white')
+          }
+        }
+      }),
       colors: {
         brand: {
           primary: '#A9E34B',
@@ -15,7 +25,9 @@ module.exports = {
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      typography: ['dark']
+    }
   },
-  plugins: []
+  plugins: [require('@tailwindcss/typography')]
 }
