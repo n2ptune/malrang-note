@@ -1,31 +1,30 @@
 <template>
-  <div
-    :key="user.uid"
-    class="wrapper"
-    ref="tetherParentRef"
-    @click="tetherVisible = !tetherVisible"
-  >
+  <div :key="user.uid" class="wrapper" ref="parentRef" @click="visible = true">
     <UserAvatar class="mr-2" />
     <div class="mr-2">
       {{ user.displayName || user.email }}
     </div>
     <ChevronDown />
-    <Tether
-      v-if="tetherParentRef && tetherVisible"
-      :parentRef="tetherParentRef"
-      :visible="tetherVisible"
-    >
-      <div class="bg-white p-5">asdjasgfqyuwfgqwifgqwuifghqwuif</div>
-    </Tether>
   </div>
+  <Tether
+    v-if="parentRef && visible"
+    class="w-64 break-all"
+    targetAttachment="bottom center"
+    :parentRef="parentRef"
+    :visible="visible"
+    @update:visible="visibleHandler"
+  >
+    <span>Hello Wrodlasfjnwqiufqnhifuqwfhqiuwfhqwiufhqwui</span>
+  </Tether>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { useCurrentUser } from '@/hooks/user'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import ChevronDown from '@/components/icons/ChevronDown.vue'
 import Tether from '@/components/utils/Tether.vue'
+import { useTether } from '@/hooks/tether'
 
 export default defineComponent({
   components: {
@@ -35,13 +34,13 @@ export default defineComponent({
   },
   setup() {
     const currentUser = useCurrentUser()
-    const tetherParentRef = ref()
-    const tetherVisible = ref(false)
+    const { parentRef, visible, visibleHandler } = useTether()
 
     return {
       user: currentUser,
-      tetherParentRef,
-      tetherVisible
+      parentRef,
+      visible,
+      visibleHandler
     }
   }
 })

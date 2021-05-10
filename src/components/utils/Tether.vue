@@ -1,19 +1,21 @@
 <template>
   <transition appear name="fade">
-    <div ref="selfRef">
+    <div ref="selfRef" role="menu" class="custom-tether-base">
       <slot />
     </div>
   </transition>
 </template>
 
 <script lang="ts">
-import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue'
+import { defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
 import Tether from 'tether'
 
 export default defineComponent({
+  emits: ['update:visible'],
   props: {
     parentRef: {
-      type: Object as PropType<HTMLElement>
+      type: Object as PropType<Element>,
+      required: true
     },
     attachment: {
       type: String,
@@ -31,9 +33,14 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props) {
-    const selfRef = ref(null)
+  setup(props, { emit }) {
+    const selfRef = ref<HTMLElement | null>(null)
     const tetherRef = ref<Tether | null>(null)
+    const eventHandler = (e: MouseEvent) => {
+      if (e.target !== selfRef.value && e.target != props.parentRef) {
+        emit('update:visible', false)
+      }
+    }
 
     onMounted(() => {
       if (selfRef.value) {
@@ -41,16 +48,24 @@ export default defineComponent({
           target: props.parentRef,
           element: selfRef.value,
           attachment: props.attachment,
-          targetAttachment: props.targetAttachment
+          targetAttachment: props.targetAttachment,
+          optimizations: {
+            moveElement: false
+          }
         })
         tetherRef.value.position()
+        /**
+         * Related to timing rendered element after resolve transition
+         */
+        setTimeout(() => {
+          document.addEventListener('click', eventHandler)
+        }, 0)
       }
     })
 
-    onBeforeUnmount(() => {
-      if (tetherRef.value) {
-        tetherRef.value.destroy()
-      }
+    onUnmounted(() => {
+      tetherRef.value?.destroy()
+      document.removeEventListener('click', eventHandler)
     })
 
     return {
@@ -60,7 +75,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .fade-enter-active,
 .fade-leave-active {
   @apply transition-opacity duration-500;
@@ -72,5 +87,9 @@ export default defineComponent({
 .fade-enter-to,
 .fade-leave-from {
   @apply opacity-100;
+}
+
+.custom-tether-base {
+  @apply dark:bg-white dark:text-brand-black-tether shadow-xl p-4 rounded break-all;
 }
 </style>
