@@ -2,22 +2,26 @@ import { RootState } from './index'
 import { Module } from 'vuex'
 
 export interface PrivatePageModuleState {
-  title: string
-  created: Timestamp
+  meta: PageMeta
 }
 
 export const privatePageModule: Module<PrivatePageModuleState, RootState> = {
   namespaced: true,
   state: {
-    title: '',
-    created: {
-      nanoseconds: 0,
-      seconds: 0
+    meta: {
+      title: '',
+      created: {
+        nanoseconds: 0,
+        seconds: 0
+      },
+      uid: ''
     }
   },
   mutations: {
-    SET_PRIVATE_PAGE(state, payload: PrivatePageModuleState) {
-      state = payload
+    SET_PRIVATE_PAGE(state, payload: PageMeta) {
+      state.meta.title = payload.title
+      state.meta.created = payload.created
+      state.meta.uid = payload.uid
     }
   },
   getters: {

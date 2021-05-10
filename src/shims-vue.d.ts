@@ -10,6 +10,12 @@ interface Timestamp {
   seconds: number
 }
 
+interface PageMeta {
+  title: string
+  created: Timestamp
+  uid: string
+}
+
 declare module '*.svg' {
   const filePath: string
   export default filePath

@@ -32,7 +32,8 @@ module.exports = {
               color: theme(lightModeBaseColor)
             },
             strong: {
-              color: theme(lightModeBaseColor)
+              color: theme(lightModeBaseColor),
+              'font-weight': '800'
             },
             p: {
               color: theme(lightModeBaseColor),
@@ -82,7 +83,8 @@ module.exports = {
               color: theme(darkModeBaseColor)
             },
             strong: {
-              color: theme(darkModeBaseColor)
+              color: theme(darkModeBaseColor),
+              'font-weight': '800'
             },
             p: {
               color: theme(darkModeBaseColor),
@@ -113,8 +115,9 @@ module.exports = {
           primary: '#A9E34B',
           pale: '#B0D07D',
           thick: '#95C051',
-          black: '#181818',
-          'black-w': '#2B2B2B'
+          black: '#0F0F0F',
+          'black-w': '#1F1F1F',
+          'black-l': '#2A2A2A'
         }
       }
     }

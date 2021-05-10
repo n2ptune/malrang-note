@@ -23,7 +23,6 @@ const checkEmptySecretPage: () => Promise<boolean> = async () => {
   return querySnapshot.empty
 }
 
-// 첫 시작시 페이지 만들기
 export const initMyPage: () => Promise<void> = async () => {
   const user = getAuth().currentUser
   const empty = await checkEmptySecretPage()

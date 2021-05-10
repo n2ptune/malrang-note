@@ -1,3 +1,4 @@
+import { sharedPageModule, SharedPageModuleState } from './shared'
 import { InjectionKey } from 'vue'
 import {
   createStore,
@@ -11,6 +12,7 @@ import { privatePageModule, PrivatePageModuleState } from './private'
 export interface RootState {
   user: UserModuleState
   private: PrivatePageModuleState
+  shared: SharedPageModuleState
 }
 
 export const key: InjectionKey<Store<RootState>> = Symbol()
@@ -24,7 +26,8 @@ export default createStore<RootState>({
   actions: {},
   modules: {
     user: userModule,
-    private: privatePageModule
+    private: privatePageModule,
+    shared: sharedPageModule
   },
   plugins: process.env.NODE_ENV === 'development' ? [createLogger()] : undefined
 })

@@ -1,14 +1,7 @@
 import { readPrivatePage } from '@/services/pages/read'
+import { initMyPage } from '@/services/pages/write'
 import { getAuth } from 'firebase/auth'
 import { useStore } from '@/store'
-import { initMyPage } from '@/services/pages/write'
-
-export const withAuthUser = (fn: () => unknown) => {
-  if (!getAuth().currentUser) {
-    return
-  }
-  fn()
-}
 
 export const injectUserToStore: () => void = () => {
   const store = useStore()
@@ -17,7 +10,8 @@ export const injectUserToStore: () => void = () => {
     if (user) {
       store.commit('user/SET_USER', user)
       await initMyPage()
-      readPrivatePage()
+      const privates = await readPrivatePage()
+      store.commit('private/SET_PRIVATE_PAGE', privates)
     }
   })
 }
