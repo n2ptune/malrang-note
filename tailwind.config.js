@@ -1,3 +1,6 @@
+const darkModeBaseColor = 'colors.white'
+const lightModeBaseColor = 'colors.brand.black'
+
 module.exports = {
   purge: ['./src/**/*.{vue,js,ts,tsx}', './public/index.html'],
   darkMode: 'media', // or 'media' or 'class'
@@ -5,11 +8,103 @@ module.exports = {
     extend: {
       typography: (theme) => ({
         DEFAULT: {
-          css: {}
+          css: {
+            color: theme(lightModeBaseColor),
+            h1: {
+              color: theme(lightModeBaseColor)
+            },
+            h2: {
+              color: theme(lightModeBaseColor)
+            },
+            h3: {
+              color: theme(lightModeBaseColor)
+            },
+            h4: {
+              color: theme(lightModeBaseColor)
+            },
+            h5: {
+              color: theme(lightModeBaseColor)
+            },
+            h6: {
+              color: theme(lightModeBaseColor)
+            },
+            code: {
+              color: theme(lightModeBaseColor)
+            },
+            strong: {
+              color: theme(lightModeBaseColor)
+            },
+            p: {
+              color: theme(lightModeBaseColor),
+              'margin-top': '0',
+              'margin-bottom': '0.5em'
+            },
+            'ul > li': {
+              '&::before': {
+                'background-color': theme(lightModeBaseColor) + ' !important'
+              },
+              '& p': {
+                margin: '0 !important'
+              }
+            },
+            'ol > li': {
+              '&::before': {
+                'background-color': theme(lightModeBaseColor) + ' !important'
+              },
+              '& p': {
+                margin: '0 !important'
+              }
+            }
+          }
         },
         dark: {
           css: {
-            color: theme('colors.white')
+            color: theme(darkModeBaseColor),
+            h1: {
+              color: theme(darkModeBaseColor)
+            },
+            h2: {
+              color: theme(darkModeBaseColor)
+            },
+            h3: {
+              color: theme(darkModeBaseColor)
+            },
+            h4: {
+              color: theme(darkModeBaseColor)
+            },
+            h5: {
+              color: theme(darkModeBaseColor)
+            },
+            h6: {
+              color: theme(darkModeBaseColor)
+            },
+            code: {
+              color: theme(darkModeBaseColor)
+            },
+            strong: {
+              color: theme(darkModeBaseColor)
+            },
+            p: {
+              color: theme(darkModeBaseColor),
+              'margin-top': '0',
+              'margin-bottom': '0.5em'
+            },
+            'ul > li': {
+              '&::before': {
+                'background-color': theme(darkModeBaseColor) + ' !important'
+              },
+              '& p': {
+                margin: '0 !important'
+              }
+            },
+            'ol > li': {
+              '&::before': {
+                'background-color': theme(darkModeBaseColor) + ' !important'
+              },
+              '& p': {
+                margin: '0 !important'
+              }
+            }
           }
         }
       }),

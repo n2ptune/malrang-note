@@ -13,12 +13,11 @@ export default defineComponent({
   },
   setup() {
     const editor = useEditor({
-      content: '<p>running with tiptap vue 3 components ⚡️',
+      content: '<h1>running with tiptap vue 3 components ⚡️</h1>',
       extensions: [StarterKit],
       editorProps: {
         attributes: {
-          class:
-            'dark:prose-dark prose prose-lg lg:prose-xl p-5 focus:outline-none prose-indigo max-w-none'
+          class: 'dark:prose-dark prose p-5 focus:outline-none max-w-none'
         }
       }
     })
