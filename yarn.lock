@@ -1872,6 +1872,11 @@
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.7.tgz#545158342f949e8fd3bfd813224971ecddc3fac4"
   integrity sha512-0VBprVqfgFD7Ehb2vd8Lh9TG3jP98gvr8rgehQqzztZNI7o8zS8Ad4jyZneKELphpuE212D8J70LnSNQSyO6bQ==
 
+"@types/tether@^1.4.5":
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/@types/tether/-/tether-1.4.5.tgz#adc4ce165555fa82124b4d5391b122551e288c21"
+  integrity sha512-uClHcrjJT1KHP3RX/ZQMGrjh6nqoNJN3qeUNbLHBuodiDpcQTxjvjO4XnoSSdqfiX4kkG8WsflXbN1F0zftZgg==
+
 "@types/uglify-js@*":
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.13.0.tgz#1cad8df1fb0b143c5aba08de5712ea9d1ff71124"
@@ -9901,6 +9906,11 @@ terser@^4.1.2, terser@^4.6.12:
     commander "^2.20.0"
     source-map "~0.6.1"
     source-map-support "~0.5.12"
+
+tether@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-2.0.0.tgz#8ccb03992e71e2e913e6b1d4feb6be8cb49a4f79"
+  integrity sha512-iAkyBhwILpLIvkwzO5w5WUBtpYwxvzLRTO+sbzF3Uy7X4zznsy73v2b4sOQHXE3CQHeSNtB/YMU2Nn9tocbeBQ==
 
 text-table@^0.2.0:
   version "0.2.0"
