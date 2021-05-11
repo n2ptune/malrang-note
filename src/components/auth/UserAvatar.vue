@@ -1,6 +1,6 @@
 <template>
   <img
-    :class="[avatarSize, 'rounded-full']"
+    :class="[avatarSize, 'rounded-full inline-block mr-3']"
     :src="user.photoURL"
     :alt="user.uid"
   />

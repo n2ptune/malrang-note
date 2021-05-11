@@ -38,6 +38,11 @@ export const userModule: Module<UserModuleState, RootState> = {
       } else {
         localStorage.setItem('loggedIn', '1')
       }
+    },
+    logout({ commit }) {
+      commit('SET_USER', null)
+
+      localStorage.removeItem('loggedIn')
     }
   }
 }

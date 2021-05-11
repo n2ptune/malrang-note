@@ -44,16 +44,8 @@ export default defineComponent({
     const eventHandler = (e: MouseEvent) => {
       if (
         !(e.target as Element).contains(selfRef.value) &&
-        (e.target as Element).parentElement &&
-        !(e.target as Element).parentElement?.classList.contains(
-          'custom-tether-base'
-        )
+        !selfRef.value?.contains(e.target as Element)
       ) {
-        console.log(
-          (e.target as Element).parentElement?.classList.contains(
-            'custom-tether-base'
-          )
-        )
         emit('update:visible', false)
       }
     }
@@ -66,6 +58,12 @@ export default defineComponent({
           attachment: props.attachment,
           targetAttachment: props.targetAttachment,
           offset: props.offset,
+          constraints: [
+            {
+              attachment: 'together',
+              to: 'scrollParent'
+            }
+          ],
           optimizations: {
             moveElement: false
           }
