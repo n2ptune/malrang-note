@@ -1,9 +1,10 @@
 <template>
-  <div class="flex flex-col flex-wrap">
+  <div class="flex flex-row flex-nowrap justify-between items-center w-72">
     <div>
       <UserAvatar size="xl" />
       {{ userName }}
     </div>
+    <div class="logout" @click="logoutHandler">로그아웃</div>
   </div>
 </template>
 
@@ -18,13 +19,22 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
-    const userName = computed(
-      () => store.getters['user/getCurrentUser'].email.split('@')[0]
-    )
+    const userName = computed(() => store.getters['user/getUserDisplayName'])
+    const logoutHandler = () => {
+      store.dispatch('user/logout')
+    }
 
     return {
-      userName
+      userName,
+      logoutHandler
     }
   }
 })
 </script>
+
+<style lang="postcss" scoped>
+.logout {
+  @apply rounded px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-400
+  hover:text-brand-black-tether text-sm cursor-pointer;
+}
+</style>

@@ -1,14 +1,14 @@
 <template>
-  <div :key="user.uid" class="wrapper" ref="parentRef" @click="visible = true">
+  <div :key="uid" class="wrapper" ref="parentRef" @click="visible = true">
     <UserAvatar class="mr-2" />
     <div class="mr-2">
-      {{ user.displayName || user.email }}
+      {{ displayName }}
     </div>
     <ChevronDown />
   </div>
   <Tether
     v-if="parentRef && visible"
-    class="w-72"
+    class="w-auto"
     attachment="top left"
     targetAttachment="bottom left"
     offset="-15px 0"
@@ -21,12 +21,12 @@
 </template>
 
 <script lang="ts">
-import { defineAsyncComponent, defineComponent } from 'vue'
-import { useCurrentUser } from '@/hooks/user'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import ChevronDown from '@/components/icons/ChevronDown.vue'
 import Tether from '@/components/utils/Tether.vue'
 import { useTether } from '@/hooks/tether'
+import { useStore } from '@/store'
 
 export default defineComponent({
   components: {
@@ -38,11 +38,12 @@ export default defineComponent({
     )
   },
   setup() {
-    const currentUser = useCurrentUser()
+    const store = useStore()
     const { parentRef, visible, visibleHandler } = useTether()
 
     return {
-      user: currentUser,
+      displayName: computed(() => store.getters['user/getUserDisplayName']),
+      uid: computed(() => store.getters['user/getCurrentUser'].uid),
       parentRef,
       visible,
       visibleHandler

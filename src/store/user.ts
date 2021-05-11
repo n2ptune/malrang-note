@@ -25,6 +25,9 @@ export const userModule: Module<UserModuleState, RootState> = {
     getCurrentUser(state) {
       return state.currentUser
     },
+    getUserDisplayName(state) {
+      return state.currentUser?.email?.split('@')[0]
+    },
     getLoggedIn(state) {
       return state.loggedIn
     }
@@ -41,6 +44,8 @@ export const userModule: Module<UserModuleState, RootState> = {
     },
     logout({ commit }) {
       commit('SET_USER', null)
+
+      console.log('hello')
 
       localStorage.removeItem('loggedIn')
     }
