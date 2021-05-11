@@ -7,9 +7,11 @@
 import { computed, defineComponent } from 'vue'
 import { injectUserToStore } from '@/services/auth/user'
 import { useStore } from '@/store'
+import { useCheckLogin } from './hooks/user'
 
 export default defineComponent({
   setup() {
+    useCheckLogin()
     injectUserToStore()
 
     const store = useStore()

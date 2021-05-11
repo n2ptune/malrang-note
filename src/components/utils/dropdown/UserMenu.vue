@@ -1,3 +1,3 @@
 <template>
-  <div></div>
+  <div>로그아웃</div>
 </template>

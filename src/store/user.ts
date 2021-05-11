@@ -28,5 +28,16 @@ export const userModule: Module<UserModuleState, RootState> = {
     getLoggedIn(state) {
       return state.loggedIn
     }
+  },
+  actions: {
+    loginUser({ commit }, payload: User | null) {
+      commit('SET_USER', payload)
+
+      if (!payload) {
+        localStorage.removeItem('loggedIn')
+      } else {
+        localStorage.setItem('loggedIn', '1')
+      }
+    }
   }
 }

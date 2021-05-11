@@ -8,7 +8,7 @@ export const injectUserToStore: () => void = () => {
 
   getAuth().onAuthStateChanged(async (user) => {
     if (user) {
-      store.commit('user/SET_USER', user)
+      store.dispatch('user/loginUser', user)
       await initMyPage()
       const privates = await readPrivatePage()
       store.commit('private/SET_PRIVATE_PAGE', privates)

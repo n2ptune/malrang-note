@@ -42,7 +42,18 @@ export default defineComponent({
     const selfRef = ref<HTMLElement | null>(null)
     const tetherRef = ref<Tether | null>(null)
     const eventHandler = (e: MouseEvent) => {
-      if (e.target !== selfRef.value && e.target != props.parentRef) {
+      if (
+        !(e.target as Element).contains(selfRef.value) &&
+        (e.target as Element).parentElement &&
+        !(e.target as Element).parentElement?.classList.contains(
+          'custom-tether-base'
+        )
+      ) {
+        console.log(
+          (e.target as Element).parentElement?.classList.contains(
+            'custom-tether-base'
+          )
+        )
         emit('update:visible', false)
       }
     }
