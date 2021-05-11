@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+/** @TODO fallback user avatar url when no photoURL key in user object */
 import { useCurrentUser } from '@/hooks/user'
 import { computed, defineComponent, PropType } from 'vue'
 

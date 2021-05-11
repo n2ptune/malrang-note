@@ -27,6 +27,11 @@ export default defineComponent({
       required: false,
       default: 'bottom center'
     },
+    offset: {
+      type: String,
+      required: false,
+      default: '-10px 0'
+    },
     visible: {
       type: Boolean,
       required: false,
@@ -49,6 +54,7 @@ export default defineComponent({
           element: selfRef.value,
           attachment: props.attachment,
           targetAttachment: props.targetAttachment,
+          offset: props.offset,
           optimizations: {
             moveElement: false
           }
@@ -90,6 +96,6 @@ export default defineComponent({
 }
 
 .custom-tether-base {
-  @apply dark:bg-white dark:text-brand-black-tether shadow-xl p-4 rounded break-all;
+  @apply bg-white text-brand-black-tether shadow-xl p-4 rounded break-all;
 }
 </style>

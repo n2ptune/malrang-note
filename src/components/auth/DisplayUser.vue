@@ -8,18 +8,20 @@
   </div>
   <Tether
     v-if="parentRef && visible"
-    class="w-64 break-all"
-    targetAttachment="bottom center"
+    class="w-72"
+    attachment="top left"
+    targetAttachment="bottom left"
+    offset="-15px 0"
     :parentRef="parentRef"
     :visible="visible"
     @update:visible="visibleHandler"
   >
-    <span>Hello Wrodlasfjnwqiufqnhifuqwfhqiuwfhqwiufhqwui</span>
+    <UserMenu />
   </Tether>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineAsyncComponent, defineComponent } from 'vue'
 import { useCurrentUser } from '@/hooks/user'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import ChevronDown from '@/components/icons/ChevronDown.vue'
@@ -30,7 +32,10 @@ export default defineComponent({
   components: {
     UserAvatar,
     ChevronDown,
-    Tether
+    Tether,
+    UserMenu: defineAsyncComponent(
+      () => import('@/components/utils/dropdown/UserMenu.vue')
+    )
   },
   setup() {
     const currentUser = useCurrentUser()
@@ -48,7 +53,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .wrapper {
-  @apply flex items-center cursor-pointer;
+  @apply inline-flex items-center cursor-pointer;
   & ::v-deep .icon-base {
     @apply transition-colors duration-200 text-gray-400;
   }

@@ -35,7 +35,7 @@ export default defineComponent({
 }
 .center {
   @apply border-r dark:border-black border-gray-200
-  dark:bg-brand-black-w bg-white;
+  dark:bg-brand-black-w bg-gray-50;
 }
 .right {
   @apply dark:bg-brand-black-l bg-white;
