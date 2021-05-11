@@ -18,3 +18,10 @@ export const useTether = () => {
     visibleHandler
   }
 }
+
+export const removeTetherFromDOM: () => void = () => {
+  const tether = document.querySelector('.custom-tether-base')
+  if (tether) {
+    document.body.removeChild(tether)
+  }
+}

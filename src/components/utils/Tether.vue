@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
+import { defineComponent, onBeforeUnmount, onMounted, PropType, ref } from 'vue'
 import Tether from 'tether'
 
 export default defineComponent({
@@ -20,17 +20,17 @@ export default defineComponent({
     attachment: {
       type: String,
       required: false,
-      default: 'top center'
+      default: 'top left'
     },
     targetAttachment: {
       type: String,
       required: false,
-      default: 'bottom center'
+      default: 'bottom left'
     },
     offset: {
       type: String,
       required: false,
-      default: '-10px 0'
+      default: '-15px 0'
     },
     visible: {
       type: Boolean,
@@ -78,7 +78,7 @@ export default defineComponent({
       }
     })
 
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
       tetherRef.value?.destroy()
       document.removeEventListener('click', eventHandler)
     })
@@ -105,6 +105,7 @@ export default defineComponent({
 }
 
 .custom-tether-base {
-  @apply bg-white text-brand-black-tether shadow-xl p-4 rounded break-all;
+  @apply bg-white text-brand-black-tether shadow-xl p-4 rounded break-all
+  w-auto;
 }
 </style>

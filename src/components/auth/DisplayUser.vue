@@ -8,10 +8,6 @@
   </div>
   <Tether
     v-if="parentRef && visible"
-    class="w-auto"
-    attachment="top left"
-    targetAttachment="bottom left"
-    offset="-15px 0"
     :parentRef="parentRef"
     :visible="visible"
     @update:visible="visibleHandler"
@@ -21,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import ChevronDown from '@/components/icons/ChevronDown.vue'
 import Tether from '@/components/utils/Tether.vue'
