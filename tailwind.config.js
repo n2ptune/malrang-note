@@ -1,6 +1,7 @@
 const darkModeBaseColor = 'colors.white'
 const lightModeBaseColor = 'colors.brand.black'
 
+/** @type {import('@types/tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
   purge: ['./src/**/*.{vue,js,ts,tsx}', './public/index.html'],
   darkMode: 'media', // or 'media' or 'class'
