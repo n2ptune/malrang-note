@@ -1,6 +1,6 @@
 <template>
   <Edit>
-    <template #center> asfuiqhfiquwhfiqwuf center test </template>
+    <template #center> TODO: NOTE LIST </template>
     <template #right>
       <Core />
     </template>
