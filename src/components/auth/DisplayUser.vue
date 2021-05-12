@@ -1,5 +1,5 @@
 <template>
-  <Tippy interactive :arrow="false" trigger="click">
+  <Tippy animation="shift-away" interactive :arrow="false" trigger="click">
     <div
       :key="uid"
       class="inline-flex items-center cursor-pointer"
@@ -21,14 +21,13 @@
 <script lang="ts">
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
+import UserMenu from '@/components/utils/dropdown/UserMenu.vue'
 import { useStore } from '@/store'
 
 export default defineComponent({
   components: {
     UserAvatar,
-    UserMenu: defineAsyncComponent(
-      () => import('@/components/utils/dropdown/UserMenu.vue')
-    ),
+    UserMenu,
     Feather: defineAsyncComponent(
       () => import('@/components/utils/Feather.vue')
     )

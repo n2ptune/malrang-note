@@ -1,13 +1,10 @@
 <template>
-  <main class="grid-cols-16 grid">
-    <section class="left col-span-2">
-      <LeftWrapper />
-    </section>
-    <section class="center col-span-3">1</section>
-    <section class="right col-span-11">
-      <RightWrapper />
-    </section>
-  </main>
+  <Edit>
+    <template #center> asfuiqhfiquwhfiqwuf center test </template>
+    <template #right>
+      <Core />
+    </template>
+  </Edit>
 </template>
 
 <script lang="ts">
@@ -15,29 +12,8 @@ import { defineAsyncComponent, defineComponent } from 'vue'
 
 export default defineComponent({
   components: {
-    LeftWrapper: defineAsyncComponent(
-      () => import('@/components/layouts/LeftWrapper.vue')
-    ),
-    RightWrapper: defineAsyncComponent(
-      () => import('@/components/layouts/RightWrapper.vue')
-    )
+    Edit: defineAsyncComponent(() => import('@/components/layouts/Edit.vue')),
+    Core: defineAsyncComponent(() => import('@/components/editor/Core.vue'))
   }
 })
 </script>
-
-<style lang="postcss" scoped>
-/* all */
-.grid > * {
-  @apply dark:text-white text-brand-black-w;
-}
-.left {
-  @apply bg-brand-black text-white;
-}
-.center {
-  @apply border-r dark:border-black border-gray-200
-  dark:bg-brand-black-w bg-gray-50;
-}
-.right {
-  @apply dark:bg-brand-black-l bg-white;
-}
-</style>

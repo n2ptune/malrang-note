@@ -27,7 +27,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 button {
-  @apply bg-brand-primary text-brand-black px-4 py-2 transition-colors duration-200
+  @apply bg-brand-primary text-brand-black px-4 py-1 transition-colors duration-200
   focus:outline-none space-x-2;
 
   &:hover {
