@@ -1,10 +1,10 @@
 <template>
-  <main class="grid-cols-12 grid">
+  <main class="grid-cols-16 grid">
     <section class="left col-span-2">
       <LeftWrapper />
     </section>
-    <section class="center col-span-2">1</section>
-    <section class="right col-span-8">
+    <section class="center col-span-3">1</section>
+    <section class="right col-span-11">
       <RightWrapper />
     </section>
   </main>

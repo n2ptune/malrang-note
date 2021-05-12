@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 initializeApp({
   apiKey: process.env.VUE_APP_FB_API_KEY,

@@ -8,16 +8,12 @@
   </div>
   <IconMenuList
     class="mt-6"
+    itemCustomClass="text-gray-400 hover:text-brand-black-tippy"
     :menus="[
       {
         name: '프로필 업데이트',
         iconType: 'user',
-        onClickHandler: () => {}
-      },
-      {
-        name: '프로필 업데이트2',
-        iconType: 'user-plus',
-        onClickHandler: () => {}
+        onClickHandler: updateProfileHandler
       }
     ]"
   />
@@ -41,10 +37,14 @@ export default defineComponent({
     const logoutHandler = () => {
       store.dispatch('user/logout')
     }
+    const updateProfileHandler = (_event: unknown) => {
+      console.log('update')
+    }
 
     return {
       userName,
-      logoutHandler
+      logoutHandler,
+      updateProfileHandler
     }
   }
 })

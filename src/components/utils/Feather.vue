@@ -16,7 +16,11 @@ export default defineComponent({
   },
   props: {
     type: String as PropType<string>,
-    size: [String, Number] as PropType<string | number>,
+    size: {
+      type: [String, Number] as PropType<string | number>,
+      required: false,
+      default: 16
+    },
     noHoverClass: {
       type: Boolean as PropType<boolean>,
       required: false,
@@ -28,10 +32,14 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .feather-icon-extend {
-  @apply transition-colors duration-200 text-gray-400;
+  @apply text-current align-middle;
 
-  &.hover-standalone:hover {
-    @apply text-white;
+  &.hover-standalone {
+    @apply transition-colors duration-200 text-gray-400;
+
+    &:hover {
+      @apply text-white;
+    }
   }
 }
 </style>

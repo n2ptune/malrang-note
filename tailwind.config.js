@@ -7,6 +7,30 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      gridColumn: {
+        'span-13': 'span 13 / span 13',
+        'span-14': 'span 14 / span 14',
+        'span-15': 'span 15 / span 15',
+        'span-16': 'span 16 / span 16'
+      },
+      gridColumnStart: {
+        14: '14',
+        15: '15',
+        16: '16',
+        17: '17'
+      },
+      gridColumnEnd: {
+        14: '14',
+        15: '15',
+        16: '16',
+        17: '17'
+      },
+      gridTemplateColumns: {
+        13: 'repeat(13, minmax(0, 1fr))',
+        14: 'repeat(14, minmax(0, 1fr))',
+        15: 'repeat(15, minmax(0, 1fr))',
+        16: 'repeat(16, minmax(0, 1fr))'
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
@@ -114,8 +138,8 @@ module.exports = {
       colors: {
         brand: {
           primary: '#A9E34B',
-          pale: '#B0D07D',
-          thick: '#95C051',
+          pale: '#93CD34',
+          thick: '#7AA436',
           black: '#0F0F0F',
           'black-w': '#1F1F1F',
           'black-l': '#2A2A2A',

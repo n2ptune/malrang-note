@@ -55,12 +55,11 @@ export default defineComponent({
 
   & > .menu-item {
     /* default */
-    @apply cursor-pointer;
+    @apply transition-colors duration-300 cursor-pointer;
 
     /* default by optional */
     &.using-default-hover {
-      @apply transition-colors duration-300 text-gray-400
-      dark:hover:text-white hover:text-brand-black-tippy;
+      @apply text-gray-400 dark:hover:text-white hover:text-brand-black-tippy;
     }
     & > * {
       @apply align-middle;
