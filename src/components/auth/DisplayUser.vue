@@ -1,48 +1,38 @@
 <template>
-  <div :key="uid" class="wrapper" ref="parentRef" @click="visible = true">
-    <UserAvatar class="mr-2" />
-    <div class="mr-2">
-      {{ displayName }}
+  <Tippy-Singleton interactive :arrow="false" trigger="click">
+    <div :key="uid" class="wrapper" ref="parentRef" @click="visible = true">
+      <UserAvatar class="mr-2" />
+      <div class="mr-2">
+        {{ displayName }}
+      </div>
+      <ChevronDown />
     </div>
-    <ChevronDown />
-  </div>
-  <Tether
-    v-if="parentRef && visible"
-    :parentRef="parentRef"
-    :visible="visible"
-    @update:visible="visibleHandler"
-  >
-    <UserMenu />
-  </Tether>
+    <template #content>
+      <UserMenu />
+    </template>
+  </Tippy-Singleton>
 </template>
 
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import ChevronDown from '@/components/icons/ChevronDown.vue'
-import Tether from '@/components/utils/Tether.vue'
-import { useTether } from '@/hooks/tether'
 import { useStore } from '@/store'
 
 export default defineComponent({
   components: {
     UserAvatar,
     ChevronDown,
-    Tether,
     UserMenu: defineAsyncComponent(
       () => import('@/components/utils/dropdown/UserMenu.vue')
     )
   },
   setup() {
     const store = useStore()
-    const { parentRef, visible, visibleHandler } = useTether()
 
     return {
       displayName: computed(() => store.getters['user/getUserDisplayName']),
-      uid: computed(() => store.getters['user/getCurrentUser'].uid),
-      parentRef,
-      visible,
-      visibleHandler
+      uid: computed(() => store.getters['user/getCurrentUser'].uid)
     }
   }
 })

@@ -5,5 +5,20 @@ import router from './router'
 import store, { key } from './store'
 import '@/assets/tailwind.css'
 import '@/assets/global.css'
+import '@/assets/tippy.css'
+import VueTippy from 'vue-tippy'
+// import 'tippy.js/dist/tippy.css'
 
-createApp(App).use(store, key).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(store, key)
+app.use(router)
+app.use(VueTippy, {
+  directive: 'tippy',
+  component: 'Tippy',
+  componentSingleton: 'Tippy-Singleton'
+})
+
+app.mount('#app')
+
+// createApp(App).use(store, key).use(router).mount('#app')

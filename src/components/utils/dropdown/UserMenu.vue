@@ -35,6 +35,6 @@ export default defineComponent({
 <style lang="postcss" scoped>
 .logout {
   @apply rounded px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-400
-  hover:text-brand-black-tether text-sm cursor-pointer;
+  hover:text-brand-black-tippy text-sm cursor-pointer;
 }
 </style>

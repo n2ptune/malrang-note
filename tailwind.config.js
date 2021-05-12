@@ -119,7 +119,7 @@ module.exports = {
           black: '#0F0F0F',
           'black-w': '#1F1F1F',
           'black-l': '#2A2A2A',
-          'black-tether': '#0A0A0A'
+          'black-tippy': '#0A0A0A'
         }
       }
     }

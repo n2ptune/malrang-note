@@ -1,4 +1,3 @@
-import { removeTetherFromDOM } from '@/hooks/tether'
 import { Module } from 'vuex'
 import { RootState } from './index'
 import type { User } from 'firebase/auth'
@@ -45,8 +44,6 @@ export const userModule: Module<UserModuleState, RootState> = {
     },
     logout({ commit }) {
       commit('SET_USER', null)
-
-      removeTetherFromDOM()
 
       localStorage.removeItem('loggedIn')
     }

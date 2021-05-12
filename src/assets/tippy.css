@@ -1,0 +1,10 @@
+/* https://vue-tippy.netlify.app/themes#tippy-elements */
+div[data-tippy-root] {
+  @apply shadow-xl;
+  & .tippy-box {
+    @apply bg-white text-brand-black-tippy p-5 rounded;
+    & .tippy-arrow {
+      @apply bg-white fill-current;
+    }
+  }
+}
