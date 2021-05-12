@@ -7,6 +7,7 @@ import '@/assets/tailwind.css'
 import '@/assets/global.css'
 import '@/assets/tippy.css'
 import VueTippy from 'vue-tippy'
+import 'tippy.js/animations/shift-away.css'
 // import '@/plugins/storage'
 
 const app = createApp(App)
