@@ -7,7 +7,6 @@ import '@/assets/tailwind.css'
 import '@/assets/global.css'
 import '@/assets/tippy.css'
 import VueTippy from 'vue-tippy'
-// import 'tippy.js/dist/tippy.css'
 
 const app = createApp(App)
 
@@ -20,5 +19,3 @@ app.use(VueTippy, {
 })
 
 app.mount('#app')
-
-// createApp(App).use(store, key).use(router).mount('#app')

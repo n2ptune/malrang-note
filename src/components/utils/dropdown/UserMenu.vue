@@ -1,21 +1,39 @@
 <template>
-  <div class="flex flex-row flex-nowrap justify-between items-center w-72">
+  <div class="flex flex-row flex-wrap justify-between items-center w-72">
     <div>
       <UserAvatar size="xl" />
       {{ userName }}
     </div>
     <div class="logout" @click="logoutHandler">로그아웃</div>
   </div>
+  <IconMenuList
+    class="mt-6"
+    :menus="[
+      {
+        name: '프로필 업데이트',
+        iconType: 'user',
+        onClickHandler: () => {}
+      },
+      {
+        name: '프로필 업데이트2',
+        iconType: 'user-plus',
+        onClickHandler: () => {}
+      }
+    ]"
+  />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import { useStore } from '@/store'
 
 export default defineComponent({
   components: {
-    UserAvatar
+    UserAvatar,
+    IconMenuList: defineAsyncComponent(
+      () => import('@/components/utils/IconMenuList.vue')
+    )
   },
   setup() {
     const store = useStore()
