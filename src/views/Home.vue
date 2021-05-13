@@ -2,7 +2,8 @@
   <Edit>
     <template #center> TODO: NOTE LIST </template>
     <template #right>
-      <Core />
+      <!-- <Core /> -->
+      <EditorWrapper />
     </template>
   </Edit>
 </template>
@@ -13,7 +14,9 @@ import { defineAsyncComponent, defineComponent } from 'vue'
 export default defineComponent({
   components: {
     Edit: defineAsyncComponent(() => import('@/components/layouts/Edit.vue')),
-    Core: defineAsyncComponent(() => import('@/components/editor/Core.vue'))
+    EditorWrapper: defineAsyncComponent(
+      () => import('@/components/editor/Wrapper.vue')
+    )
   }
 })
 </script>

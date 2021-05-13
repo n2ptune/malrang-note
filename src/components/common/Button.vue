@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button :class="classes">
     <Feather v-if="icon" v-bind="icon" />
     <span class="align-middle">
       <slot />
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import Feather from '@/components/utils/Feather.vue'
 
 export default defineComponent({
@@ -20,18 +20,34 @@ export default defineComponent({
       type: Object as PropType<unknown>,
       required: false,
       default: null
+    },
+    isPrimary: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: true
     }
+  },
+  setup(props) {
+    const classes = computed(() =>
+      props.isPrimary ? 'primary' : 'non-primary'
+    )
+
+    return { classes }
   }
 })
 </script>
 
 <style lang="postcss" scoped>
 button {
-  @apply bg-brand-primary text-brand-black px-4 py-1 transition-colors duration-200
+  @apply px-4 py-1 transition-colors duration-200
   focus:outline-none space-x-2;
 
-  &:hover {
-    @apply bg-brand-pale outline-none;
+  &.primary {
+    @apply text-brand-black bg-brand-primary hover:bg-brand-pale;
   }
+
+  /* &.non-primary {
+    @apply;
+  } */
 }
 </style>
