@@ -13,11 +13,12 @@ export default defineComponent({
   },
   setup() {
     const editor = useEditor({
-      content: '<h1>running with tiptap vue 3 components ⚡️</h1>',
+      content: '<h1>running with tiptap vue 3 components ⚡️</h1>'.repeat(50),
       extensions: [StarterKit],
       editorProps: {
         attributes: {
-          class: 'dark:prose-dark prose p-5 focus:outline-none max-w-none'
+          class:
+            'dark:prose-dark prose p-5 focus:outline-none max-w-none overflow-y-scroll h-96'
         }
       }
     })
@@ -30,3 +31,5 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="postcss" scoped></style>

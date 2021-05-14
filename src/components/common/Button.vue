@@ -46,8 +46,9 @@ button {
     @apply text-brand-black bg-brand-primary hover:bg-brand-pale;
   }
 
-  /* &.non-primary {
-    @apply;
-  } */
+  &.non-primary {
+    @apply bg-brand-black-l text-white dark:bg-white dark:text-brand-black
+    hover:bg-brand-black dark:hover:bg-gray-200;
+  }
 }
 </style>
