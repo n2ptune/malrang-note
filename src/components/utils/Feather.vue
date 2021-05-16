@@ -38,7 +38,7 @@ export default defineComponent({
     @apply transition-colors duration-200 text-gray-400;
 
     &:hover {
-      @apply text-white;
+      @apply text-brand-black dark:text-white;
     }
   }
 }

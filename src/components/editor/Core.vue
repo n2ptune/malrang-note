@@ -17,8 +17,7 @@ export default defineComponent({
       extensions: [StarterKit],
       editorProps: {
         attributes: {
-          class:
-            'dark:prose-dark prose p-5 focus:outline-none max-w-none overflow-y-scroll h-96'
+          class: 'core-editor'
         }
       }
     })
@@ -32,4 +31,21 @@ export default defineComponent({
 })
 </script>
 
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+::v-deep(.core-editor) {
+  @apply dark:prose-dark prose p-5 focus:outline-none
+  max-w-none overflow-y-scroll leading-tight;
+
+  & ul > li {
+    @apply my-1 !important pl-5;
+
+    &::before {
+      @apply top-2 bg-brand-black-tippy dark:bg-gray-100 !important;
+    }
+
+    & p {
+      @apply my-1 !important;
+    }
+  }
+}
+</style>
