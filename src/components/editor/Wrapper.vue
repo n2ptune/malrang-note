@@ -1,6 +1,6 @@
 <template>
-  <section class="relative flex flex-col space-y-2">
-    <div class="top-menu">
+  <section class="h-screen relative flex flex-col space-y-2">
+    <div class="menu top-menu flexing">
       <div class="space-x-2">
         <Feather
           :type="iconType"
@@ -17,10 +17,11 @@
         <Button class="rounded"> 공유 </Button>
       </div>
     </div>
-    <div class="editor-menu">
+    <div class="menu editor-menu">
       <div>Editor Menus</div>
     </div>
     <Core />
+    <div class="menu bottom-menu flexing">test</div>
   </section>
 </template>
 
@@ -54,9 +55,21 @@ export default defineComponent({
 </script>
 
 <style lang="postcss" scoped>
-.top-menu {
+.menu {
   height: 5vh;
-  @apply flex justify-between px-4 py-2 border-b items-center
-  border-gray-200 dark:border-brand-black;
+
+  @apply px-4 py-2 border-gray-200 dark:border-brand-black;
+
+  &.flexing {
+    @apply flex items-center;
+  }
+
+  &.bottom-menu {
+    @apply absolute w-full border-t z-10 bottom-0;
+  }
+
+  &.top-menu {
+    @apply justify-between border-b;
+  }
 }
 </style>

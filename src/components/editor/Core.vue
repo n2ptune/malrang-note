@@ -33,8 +33,9 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 ::v-deep(.core-editor) {
-  @apply dark:prose-dark prose p-5 focus:outline-none
-  max-w-none overflow-y-scroll leading-tight;
+  height: 80vh;
+  @apply dark:prose-dark prose px-4 py-2 focus:outline-none
+  max-w-none overflow-y-auto leading-tight;
 
   & ul > li {
     @apply my-1 !important pl-5;
