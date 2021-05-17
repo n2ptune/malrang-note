@@ -2,7 +2,10 @@
 div[data-tippy-root] {
   @apply shadow-xl;
   & .tippy-box {
-    @apply bg-white text-brand-black-tippy p-5 rounded;
+    @apply bg-brand-black-tippy-l text-white rounded px-4 py-2;
+    &[role='group'] {
+      @apply p-5;
+    }
     & .tippy-arrow {
       @apply bg-white fill-current;
     }

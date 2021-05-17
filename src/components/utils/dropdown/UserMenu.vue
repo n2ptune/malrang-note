@@ -4,11 +4,16 @@
       <UserAvatar size="xl" />
       {{ userName }}
     </div>
-    <div class="logout" @click="logoutHandler">로그아웃</div>
+    <Button
+      @click="logoutHandler"
+      class="rounded text-sm"
+      :icon="{ type: 'log-out', size: 16, noHoverClass: true, isDark: false }"
+    >
+      로그아웃
+    </Button>
   </div>
   <IconMenuList
     class="mt-6"
-    itemCustomClass="text-gray-400 hover:text-brand-black-tippy"
     :menus="[
       {
         name: '프로필 업데이트',
@@ -23,19 +28,22 @@
 import { computed, defineAsyncComponent, defineComponent } from 'vue'
 import UserAvatar from '@/components/auth/UserAvatar.vue'
 import { useStore } from '@/store'
+import Button from '@/components/common/Button.vue'
 
 export default defineComponent({
   components: {
     UserAvatar,
     IconMenuList: defineAsyncComponent(
       () => import('@/components/utils/IconMenuList.vue')
-    )
+    ),
+    Button
   },
   setup() {
     const store = useStore()
     const userName = computed(() => store.getters['user/getUserDisplayName'])
     const logoutHandler = () => {
-      store.dispatch('user/logout')
+      // store.dispatch('user/logout')
+      console.log('logout')
     }
     const updateProfileHandler = (_event: unknown) => {
       console.log('update')
@@ -49,10 +57,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="postcss" scoped>
-.logout {
-  @apply rounded px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-400
-  hover:text-brand-black-tippy text-sm cursor-pointer;
-}
-</style>

@@ -1,7 +1,11 @@
 <template>
   <vue-feather
     :type="type"
-    :class="['feather-icon-extend', noHoverClass || 'hover-standalone']"
+    :class="[
+      'feather-icon-extend',
+      noHoverClass || 'hover-standalone',
+      isDark || 'is-dark'
+    ]"
     :size="size"
   />
 </template>
@@ -25,6 +29,11 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       required: false,
       default: false
+    },
+    isDark: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: true
     }
   }
 })
@@ -39,6 +48,10 @@ export default defineComponent({
 
     &:hover {
       @apply text-brand-black dark:text-white;
+    }
+
+    &.is-dark:hover {
+      @apply text-white;
     }
   }
 }

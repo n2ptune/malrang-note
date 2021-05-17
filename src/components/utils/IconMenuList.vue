@@ -4,7 +4,7 @@
       :class="[
         'menu-item',
         itemCustomClass,
-        usingHoverClass || 'using-default-hover'
+        usingHoverClass ? 'using-default-hover' : ''
       ]"
       v-for="menu in menus"
       :key="menu.name"
@@ -59,7 +59,7 @@ export default defineComponent({
 
     /* default by optional */
     &.using-default-hover {
-      @apply text-gray-400 dark:hover:text-white hover:text-brand-black-tippy;
+      @apply text-gray-400 hover:text-white;
     }
     & > * {
       @apply align-middle;

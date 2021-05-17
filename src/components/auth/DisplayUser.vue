@@ -1,5 +1,5 @@
 <template>
-  <Tippy animation="shift-away" interactive :arrow="false" trigger="click">
+  <Tippy animation="shift-away" interactive trigger="click" role="group">
     <div
       :key="uid"
       class="inline-flex items-center cursor-pointer"
@@ -10,7 +10,7 @@
       <div class="mr-2">
         {{ displayName }}
       </div>
-      <Feather type="chevron-down" :size="20" />
+      <Feather type="chevron-down" :size="20" isDark />
     </div>
     <template #content>
       <UserMenu />
