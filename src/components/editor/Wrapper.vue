@@ -1,16 +1,25 @@
 <template>
   <section class="h-screen relative flex flex-col space-y-2">
     <div class="menu top-menu flexing">
-      <div class="space-x-2">
+      <div class="space-x-3">
         <Feather
           v-tippy="{ content: '화면 전환', arrow: true }"
           :type="iconType"
           :size="20"
-          class="cursor-pointer pr-3 border-r border-gray-200 dark:border-brand-black-tippy"
+          class="icon"
           @click="fullHandler"
         />
-        <Feather type="coffee" :size="20" class="pl-2 pr-1" noHoverClass />
-        <span>현재 작업중인 메모장 1</span>
+        <Tippy animation="shift-away" interactive trigger="click" role="group">
+          <Feather
+            type="more-horizontal"
+            :size="20"
+            class="icon pr-4 border-gray-200 dark:border-brand-black border-r"
+          />
+          <template #content>
+            <EditMenu />
+          </template>
+        </Tippy>
+        <span class="pl-2">현재 작업중인 메모장 1</span>
         <div class="w-px h-full bg-white" />
       </div>
       <div class="space-x-2 text-sm">
@@ -37,6 +46,9 @@ export default defineComponent({
     ),
     Feather: defineAsyncComponent(
       () => import('@/components/utils/Feather.vue')
+    ),
+    EditMenu: defineAsyncComponent(
+      () => import('@/components/utils/dropdown/EditMenu.vue')
     )
   },
   setup() {
@@ -71,6 +83,10 @@ export default defineComponent({
 
   &.top-menu {
     @apply justify-between border-b;
+
+    & .icon {
+      @apply cursor-pointer;
+    }
   }
 }
 </style>

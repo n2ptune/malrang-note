@@ -4,7 +4,6 @@
       :key="uid"
       class="inline-flex items-center cursor-pointer"
       ref="parentRef"
-      @click="visible = true"
     >
       <UserAvatar class="mr-2" />
       <div class="mr-2">
