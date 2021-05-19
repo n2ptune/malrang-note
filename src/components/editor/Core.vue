@@ -1,15 +1,33 @@
 <template>
   <EditorContent :editor="editor" />
+  <FloatingMenu v-if="editor" :editor="editor" class="floating-menu">
+    <button
+      v-for="menu in floatingMenus"
+      :key="menu.eventName"
+      @click="() => floatMenuHandler(menu.eventName)"
+    >
+      {{ menu.title }}
+    </button>
+  </FloatingMenu>
+  <BubbleMenu v-if="editor" :editor="editor" class="bubble-menu" />
 </template>
 
 <script lang="ts">
-import { defineComponent, onUnmounted } from 'vue'
-import { useEditor, EditorContent } from '@tiptap/vue-3'
+import { defineComponent, onUnmounted, reactive } from 'vue'
+import {
+  useEditor,
+  EditorContent,
+  FloatingMenu,
+  BubbleMenu
+} from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import { floatingMenus } from './menu'
 
 export default defineComponent({
   components: {
-    EditorContent
+    EditorContent,
+    FloatingMenu,
+    BubbleMenu
   },
   setup() {
     const editor = useEditor({
@@ -22,10 +40,29 @@ export default defineComponent({
       }
     })
 
+    const floatMenuEvents = reactive({
+      onFloatTopHeading() {
+        editor.value?.chain().focus().toggleHeading({ level: 1 }).run()
+      },
+      onFloatHeading() {
+        editor.value?.chain().focus().toggleHeading({ level: 2 }).run()
+      },
+      onFloatSubHeading() {
+        editor.value?.chain().focus().toggleHeading({ level: 3 }).run()
+      },
+      onFloatList() {
+        editor.value?.chain().focus().toggleBulletList().run()
+      }
+    })
+
     onUnmounted(() => editor.value?.destroy())
 
     return {
-      editor
+      editor,
+      floatingMenus,
+      floatMenuHandler(eventName: keyof typeof floatMenuEvents) {
+        floatMenuEvents[eventName]()
+      }
     }
   }
 })
@@ -64,6 +101,13 @@ export default defineComponent({
     & p {
       @apply my-1 !important;
     }
+  }
+}
+.floating-menu {
+  @apply space-x-3;
+  & button {
+    @apply text-gray-500 transition-colors duration-200 hover:text-white
+    focus:outline-none;
   }
 }
 </style>
