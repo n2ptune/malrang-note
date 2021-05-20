@@ -72,5 +72,14 @@ export const bubbleMenus: FloatingMenu[] = [
         'is-active': editor.isActive('strike')
       }
     }
+  },
+  {
+    title: '형광펜',
+    eventName: 'onHighlight',
+    activeFn: (editor) => {
+      return {
+        'is-active': editor.isActive('highlight')
+      }
+    }
   }
 ]

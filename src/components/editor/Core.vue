@@ -32,6 +32,7 @@ import {
   Editor
 } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import Highlight from '@tiptap/extension-highlight'
 import { bubbleMenus, floatingMenus } from './menu'
 
 export default defineComponent({
@@ -43,7 +44,7 @@ export default defineComponent({
   setup() {
     const editor = useEditor({
       content: '<h1>running with tiptap vue 3 components ⚡️</h1>'.repeat(50),
-      extensions: [StarterKit],
+      extensions: [StarterKit, Highlight],
       editorProps: {
         attributes: {
           class: 'core-editor'
@@ -75,6 +76,9 @@ export default defineComponent({
       },
       onBubbleStrike() {
         editor.value.chain().focus().toggleStrike().run()
+      },
+      onHighlight() {
+        editor.value.chain().focus().toggleHighlight().run()
       }
     })
 
@@ -101,6 +105,19 @@ export default defineComponent({
   height: 80vh;
   @apply dark:prose-dark prose px-4 py-2 focus:outline-none
   max-w-none overflow-y-auto leading-tight;
+
+  & code {
+    @apply px-2 py-1 rounded-lg bg-gray-200 dark:bg-brand-black-w;
+
+    &::before,
+    &::after {
+      content: '';
+    }
+  }
+
+  & mark {
+    @apply bg-brand-primary;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -130,6 +147,7 @@ export default defineComponent({
     }
   }
 }
+
 .floating-menu,
 .bubble-menu {
   @apply space-x-3;
