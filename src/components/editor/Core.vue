@@ -33,6 +33,7 @@ import {
 } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
+import Underline from '@tiptap/extension-underline'
 import { bubbleMenus, floatingMenus } from './menu'
 
 export default defineComponent({
@@ -41,14 +42,18 @@ export default defineComponent({
     FloatingMenu,
     BubbleMenu
   },
-  setup() {
+  emits: ['init'],
+  setup(_, { emit }) {
     const editor = useEditor({
       content: '<h1>running with tiptap vue 3 components ⚡️</h1>'.repeat(50),
-      extensions: [StarterKit, Highlight],
+      extensions: [StarterKit, Highlight, Underline],
       editorProps: {
         attributes: {
           class: 'core-editor'
         }
+      },
+      onCreate(_editor) {
+        emit('init', _editor)
       }
     }) as Ref<Editor>
 
@@ -102,8 +107,8 @@ export default defineComponent({
 <style lang="postcss" scoped>
 ::v-deep(.core-editor) {
   /* scrollbar-width: none; */
-  height: 80vh;
-  @apply dark:prose-dark prose px-4 py-2 focus:outline-none
+  height: 90vh;
+  @apply dark:prose-dark prose p-4 focus:outline-none
   max-w-none overflow-y-auto leading-tight;
 
   & code {

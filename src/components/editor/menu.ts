@@ -8,7 +8,7 @@ type FloatingMenu = {
 
 export const floatingMenus: FloatingMenu[] = [
   {
-    title: '머리말',
+    title: '제목',
     eventName: 'onFloatTopHeading',
     activeFn: (editor) => {
       return {
@@ -17,7 +17,7 @@ export const floatingMenus: FloatingMenu[] = [
     }
   },
   {
-    title: '제목',
+    title: '머리말',
     eventName: 'onFloatHeading',
     activeFn: (editor) => {
       return {

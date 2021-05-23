@@ -1,5 +1,5 @@
 <template>
-  <section class="h-screen relative flex flex-col space-y-2">
+  <section class="h-screen relative flex flex-col">
     <div class="menu top-menu flexing">
       <div class="space-x-3">
         <Feather
@@ -23,20 +23,25 @@
         <div class="w-px h-full bg-white" />
       </div>
       <div class="space-x-2 text-sm">
-        <Button :isPrimary="false" class="rounded"> 삭제 </Button>
         <Button class="rounded"> 공유 </Button>
       </div>
     </div>
-    <div class="menu editor-menu">
-      <div>Editor Menus</div>
+    <div class="menu editor-menu flexing">
+      <FormatMenu v-if="editor.ref" :editor="editor.ref" />
     </div>
-    <Core />
-    <div class="menu bottom-menu flexing">test</div>
+    <Core @init="initCoreEditor" />
   </section>
 </template>
 
 <script lang="ts">
-import { computed, defineAsyncComponent, defineComponent, ref } from 'vue'
+import { Editor } from '@tiptap/vue-3'
+import {
+  computed,
+  defineAsyncComponent,
+  defineComponent,
+  reactive,
+  ref
+} from 'vue'
 
 export default defineComponent({
   components: {
@@ -49,19 +54,27 @@ export default defineComponent({
     ),
     EditMenu: defineAsyncComponent(
       () => import('@/components/utils/dropdown/EditMenu.vue')
+    ),
+    FormatMenu: defineAsyncComponent(
+      () => import('@/components/editor/FormatMenu.vue')
     )
   },
   setup() {
     const isFull = ref(false)
     const iconType = computed(() => (isFull.value ? 'minimize' : 'maximize'))
+    const editor = reactive<{ ref: Editor | null }>({ ref: null })
 
     const fullHandler = () => {
       isFull.value = !isFull.value
     }
 
     return {
+      editor,
       iconType,
-      fullHandler
+      fullHandler,
+      initCoreEditor(editorRef: { editor: Editor }) {
+        editor.ref = editorRef.editor
+      }
     }
   }
 })
@@ -77,16 +90,16 @@ export default defineComponent({
     @apply flex items-center;
   }
 
-  &.bottom-menu {
-    @apply absolute w-full border-t z-10 bottom-0;
-  }
-
   &.top-menu {
     @apply justify-between border-b;
 
     & .icon {
       @apply cursor-pointer;
     }
+  }
+
+  &.editor-menu {
+    @apply border-b;
   }
 }
 </style>
