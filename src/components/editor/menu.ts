@@ -4,6 +4,7 @@ type FloatingMenu = {
   title: string
   eventName: string
   activeFn?: (editor: Editor) => unknown
+  icon?: string
 }
 
 export const floatingMenus: FloatingMenu[] = [

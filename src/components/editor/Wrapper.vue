@@ -26,7 +26,7 @@
         <Button class="rounded"> 공유 </Button>
       </div>
     </div>
-    <div class="menu editor-menu flexing">
+    <div class="menu format-menu-wrapper flexing">
       <FormatMenu v-if="editor.ref" :editor="editor.ref" />
     </div>
     <Core @init="initCoreEditor" />
@@ -84,22 +84,22 @@ export default defineComponent({
 .menu {
   height: 5vh;
 
-  @apply px-4 py-2 border-gray-200 dark:border-brand-black;
+  @apply py-2 border-gray-200 dark:border-brand-black;
 
   &.flexing {
     @apply flex items-center;
   }
 
   &.top-menu {
-    @apply justify-between border-b;
+    @apply justify-between border-b px-5;
 
     & .icon {
       @apply cursor-pointer;
     }
   }
 
-  &.editor-menu {
-    @apply border-b;
+  &.format-menu-wrapper {
+    @apply border-b px-2;
   }
 }
 </style>

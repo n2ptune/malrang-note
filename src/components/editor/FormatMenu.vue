@@ -64,6 +64,78 @@
       />
     </svg>
     <hr class="separate" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z"
+      />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M8 4h13v2H8V4zM5 3v3h1v1H3V6h1V4H3V3h2zM3 14v-2.5h2V11H3v-1h3v2.5H4v.5h2v1H3zm2 5.5H3v-1h2V18H3v-1h3v4H3v-1h2v-.5zM8 11h13v2H8v-2zm0 7h13v2H8v-2z"
+      />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M16.95 8.464l1.414-1.414 4.95 4.95-4.95 4.95-1.414-1.414L20.485 12 16.95 8.464zm-9.9 0L3.515 12l3.535 3.536-1.414 1.414L.686 12l4.95-4.95L7.05 8.464z"
+      />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M18.364 15.536L16.95 14.12l1.414-1.414a5 5 0 1 0-7.071-7.071L9.879 7.05 8.464 5.636 9.88 4.222a7 7 0 0 1 9.9 9.9l-1.415 1.414zm-2.828 2.828l-1.415 1.414a7 7 0 0 1-9.9-9.9l1.415-1.414L7.05 9.88l-1.414 1.414a5 5 0 1 0 7.071 7.071l1.414-1.414 1.415 1.414zm-.708-10.607l1.415 1.415-7.071 7.07-1.415-1.414 7.071-7.07z"
+      />
+    </svg>
+    <hr class="separate" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M3 4h18v2H3V4zm0 15h14v2H3v-2zm0-5h18v2H3v-2zm0-5h14v2H3V9z" />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M3 4h18v2H3V4zm2 15h14v2H5v-2zm-2-5h18v2H3v-2zm2-5h14v2H5V9z" />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path d="M3 4h18v2H3V4zm4 15h14v2H7v-2zm-4-5h18v2H3v-2zm4-5h14v2H7V9z" />
+    </svg>
   </div>
 </template>
 
@@ -83,22 +155,22 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .format-menus {
-  @apply text-gray-300 dark:text-gray-400 h-full flex items-center
-  space-x-1;
+  @apply text-gray-400 dark:text-gray-400 h-full flex items-center
+  space-x-2;
 
   & svg {
     @apply inline-block cursor-pointer rounded fill-current transition-colors
-    duration-200;
+    duration-200 w-10 h-10 p-2;
 
     &.is-active,
     &:hover {
-      @apply text-brand-black dark:text-white;
+      @apply text-brand-black bg-gray-100 dark:text-white dark:bg-brand-black-w;
     }
   }
 
   & .separate {
     @apply inline-block border-none w-px h-2/3 bg-gray-200 dark:bg-brand-black
-    mx-3 !important;
+    ml-4 !important;
   }
 }
 </style>
