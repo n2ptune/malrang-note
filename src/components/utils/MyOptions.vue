@@ -4,7 +4,7 @@
       v-for="icon in icons"
       :key="icon.type"
       v-bind="defaultFeatherOption"
-      v-tippy="generateTippyOptions(icon.name)"
+      v-tippy="generateTippyOptions(icon.content)"
       :type="icon.type"
     />
   </div>

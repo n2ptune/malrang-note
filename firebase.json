@@ -16,5 +16,10 @@
   "storage": {
     "rules": "storage.rules"
   },
-  "emulators": {}
+  "emulators": {
+    "firestore": {
+      "host": "localhost",
+      "port": "9999"
+    }
+  }
 }
