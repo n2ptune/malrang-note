@@ -1,9 +1,9 @@
 <template>
-  <article class="px-4 py-6 space-y-4">
+  <aside class="relative px-4 py-6 space-y-4 h-full">
     <DisplayUser />
-    <MyOptions />
     <PrivatePages />
-  </article>
+    <MyOptions />
+  </aside>
 </template>
 
 <script lang="ts">

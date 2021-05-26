@@ -41,7 +41,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .feather-icon-extend {
-  @apply text-current align-middle;
+  @apply text-current align-middle cursor-pointer;
 
   &.hover-standalone {
     @apply transition-colors duration-200 text-gray-400;

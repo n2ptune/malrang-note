@@ -243,7 +243,7 @@ export default defineComponent({
 
 <style lang="postcss" scoped>
 .format-menus {
-  @apply text-gray-400 dark:text-gray-400 h-full flex items-center
+  @apply text-gray-400 dark:text-gray-300 text-opacity-50 h-full flex items-center
   space-x-2;
 
   & svg {
@@ -252,7 +252,8 @@ export default defineComponent({
 
     &.is-active,
     &:hover {
-      @apply text-brand-black bg-gray-100 dark:text-white dark:bg-brand-black-w;
+      @apply text-brand-black bg-gray-100 dark:text-white dark:bg-brand-black-w
+      text-opacity-100;
     }
   }
 
