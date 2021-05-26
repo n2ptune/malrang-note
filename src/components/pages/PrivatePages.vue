@@ -1,5 +1,5 @@
 <template>
-  <div>{{ meta.title }}</div>
+  <div>{{ privatePage.title || privatePageMeta.title }}</div>
 </template>
 
 <script lang="ts">
@@ -9,9 +9,16 @@ import { computed, defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const store = useStore()
+    store.dispatch('private/dispatchPrivatePage')
+
+    const privatePageMeta = computed(
+      () => store.getters['private/getPrivatePageMeta']
+    )
+    const privatePage = computed(() => store.getters['private/getPrivatePage'])
 
     return {
-      meta: computed(() => store.getters['private/getPrivatePageMeta'])
+      privatePageMeta,
+      privatePage
     }
   }
 })

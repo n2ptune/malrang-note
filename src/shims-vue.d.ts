@@ -16,6 +16,8 @@ interface PageMeta {
   uid: string
 }
 
+type PickValue<T, K extends keyof T> = T[K]
+
 declare module '*.svg' {
   const filePath: string
   export default filePath
