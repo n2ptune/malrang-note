@@ -10,6 +10,39 @@ import {
 import { getAuth } from 'firebase/auth'
 import { PrivatePageModuleState } from '@/store/private'
 
+const getMyPrivateDoc = async (uid: string | number) => {
+  const firestore = getFirestore()
+  const myDocQuery = query(
+    collection(firestore, 'secret_pages'),
+    where('uid', '==', uid)
+  )
+  const myDoc = await getDocs(myDocQuery)
+
+  if (myDoc.empty) throw new Error('Invalid Private docs')
+
+  return myDoc.docs[0]
+}
+
+const getSharedPermissions: () => Promise<string[]> = async () => {
+  const user = getAuth().currentUser
+
+  if (!user) throw new Error('Invalid User')
+
+  const firestore = getFirestore()
+  const permissions = collection(firestore, 'user_permissions')
+  const myPermQuery = query(permissions, where('user_uid', '==', user.uid))
+  const permDoc = await getDocs(myPermQuery)
+
+  if (permDoc.empty) return []
+
+  return permDoc.docs[0].data() as string[]
+}
+
+export const readSharedPages: () => Promise<unknown> = async () => {
+  const reachable = await getSharedPermissions()
+  console.log(reachable)
+}
+
 export const readPrivatePage: () => Promise<PrivatePageModuleState> = async () => {
   const user = getAuth().currentUser
 
@@ -18,31 +51,19 @@ export const readPrivatePage: () => Promise<PrivatePageModuleState> = async () =
   const firestore = getFirestore()
 
   const _meta = doc(collection(firestore, 'secret_pages'), 'meta')
-  const _my = query(
-    collection(firestore, 'secret_pages'),
-    where('uid', '==', user.uid)
-  )
   const metaDoc = await getDoc(_meta)
-  const myDoc = await getDocs(_my)
-
-  if (myDoc.size !== 1) throw new Error('Invalid Private page')
+  const myDoc = await getMyPrivateDoc(user.uid)
 
   return {
     meta: metaDoc.data() as PickValue<PrivatePageModuleState, 'meta'>,
-    page: myDoc.docs[0].data() as PickValue<PrivatePageModuleState, 'page'>
+    page: myDoc.data() as PickValue<PrivatePageModuleState, 'page'>
   }
 }
 
-// ;(async function () {
-//   const collect = collection(
-//     getFirestore(),
-//     'shared_pages',
-//     'meta',
-//     'page_meta'
-//   )
-//   const metaDocsQuery = query(collect, where('uid', '==', '12345'))
-//   const qsMetaDocs = await getDocs(metaDocsQuery)
+// export const readPrivateContents: () => Promise<unknown> = async () => {
+//   const uid = getAuth().currentUser?.uid
 
-//   const data = qsMetaDocs.docs.map((doc) => doc.data())
-//   console.log(data)
-// })()
+//   if (!uid) throw new Error('Invalid User')
+
+//   const myDoc = await getMyPrivateDoc(uid)
+// }

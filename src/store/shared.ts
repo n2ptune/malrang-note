@@ -1,3 +1,4 @@
+import { readSharedPages } from './../services/pages/read'
 import { Module } from 'vuex'
 import { RootState } from './index'
 
@@ -6,6 +7,7 @@ export interface SharedPageModuleState {
 }
 
 export const sharedPageModule: Module<SharedPageModuleState, RootState> = {
+  namespaced: true,
   state: {
     meta: []
   },
@@ -17,6 +19,11 @@ export const sharedPageModule: Module<SharedPageModuleState, RootState> = {
   getters: {
     getPageMeta(state) {
       return state.meta
+    }
+  },
+  actions: {
+    async dispatchSharedPages({ commit }) {
+      await readSharedPages()
     }
   }
 }

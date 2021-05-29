@@ -27,7 +27,7 @@ import { defineAsyncComponent, defineComponent, PropType } from 'vue'
 type IconMenus = {
   name: string
   iconType: string
-  onClickHandler: (event: unknown) => never
+  onClickHandler?: (event: unknown) => unknown
 }
 
 export default defineComponent({
