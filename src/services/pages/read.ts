@@ -10,6 +10,11 @@ import {
 import { getAuth } from 'firebase/auth'
 import { PrivatePageModuleState } from '@/store/private'
 
+type ReachableCollection = {
+  reachable: string[]
+  user_uid: string
+}
+
 const getMyPrivateDoc = async (uid: string | number) => {
   const firestore = getFirestore()
   const myDocQuery = query(
@@ -23,7 +28,7 @@ const getMyPrivateDoc = async (uid: string | number) => {
   return myDoc.docs[0]
 }
 
-const getSharedPermissions: () => Promise<string[]> = async () => {
+const getSharedPermissions: () => Promise<ReachableCollection> = async () => {
   const user = getAuth().currentUser
 
   if (!user) throw new Error('Invalid User')
@@ -33,14 +38,25 @@ const getSharedPermissions: () => Promise<string[]> = async () => {
   const myPermQuery = query(permissions, where('user_uid', '==', user.uid))
   const permDoc = await getDocs(myPermQuery)
 
-  if (permDoc.empty) return []
+  if (permDoc.empty) throw new Error('No reachable collections')
 
-  return permDoc.docs[0].data() as string[]
+  return permDoc.docs[0].data() as ReachableCollection
 }
 
-export const readSharedPages: () => Promise<unknown> = async () => {
-  const reachable = await getSharedPermissions()
-  console.log(reachable)
+export const readSharedPages: () => Promise<PageMeta[]> = async () => {
+  const { reachable } = await getSharedPermissions()
+  const firestore = getFirestore()
+  const innerMeta = collection(
+    doc(collection(firestore, 'shared_pages'), 'meta'),
+    'page_meta'
+  )
+  const sharedMetaQuery = query(innerMeta, where('uid', 'in', reachable))
+  const sharedMetaDocs = await getDocs(sharedMetaQuery)
+  const result: PageMeta[] = []
+
+  sharedMetaDocs.docs.forEach((doc) => result.push(doc.data() as PageMeta))
+
+  return result
 }
 
 export const readPrivatePage: () => Promise<PrivatePageModuleState> = async () => {

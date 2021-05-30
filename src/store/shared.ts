@@ -23,7 +23,8 @@ export const sharedPageModule: Module<SharedPageModuleState, RootState> = {
   },
   actions: {
     async dispatchSharedPages({ commit }) {
-      await readSharedPages()
+      const pageMeta = await readSharedPages()
+      commit('SET_PAGE_META', pageMeta)
     }
   }
 }
