@@ -1,6 +1,6 @@
 <template>
   <EditorContent :editor="editor" />
-  <FloatingMenu v-if="editor" :editor="editor" class="floating-menu">
+  <!-- <FloatingMenu v-if="editor" :editor="editor" class="floating-menu">
     <button
       v-for="menu in floatingMenus"
       :key="menu.eventName"
@@ -9,7 +9,7 @@
     >
       {{ menu.title }}
     </button>
-  </FloatingMenu>
+  </FloatingMenu> -->
   <BubbleMenu v-if="editor" :editor="editor" class="bubble-menu">
     <button
       v-for="menu in bubbleMenus"
@@ -27,7 +27,7 @@ import { defineComponent, onUnmounted, reactive, Ref } from 'vue'
 import {
   useEditor,
   EditorContent,
-  FloatingMenu,
+  // FloatingMenu,
   BubbleMenu,
   Editor
 } from '@tiptap/vue-3'
@@ -40,7 +40,7 @@ import { bubbleMenus, floatingMenus } from './menu'
 export default defineComponent({
   components: {
     EditorContent,
-    FloatingMenu,
+    // FloatingMenu,
     BubbleMenu
   },
   emits: ['init'],
