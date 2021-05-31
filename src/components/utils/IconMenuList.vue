@@ -51,7 +51,8 @@ export default defineComponent({
   },
   components: {
     Feather: defineAsyncComponent(() => import('./Feather.vue'))
-  }
+  },
+  setup(props) {}
 })
 </script>
 
