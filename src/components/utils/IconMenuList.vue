@@ -18,6 +18,7 @@
       />
       <span>{{ menu.name }}</span>
     </li>
+    <li v-if="children">test</li>
   </ul>
 </template>
 
@@ -41,6 +42,11 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       required: false,
       default: true
+    },
+    children: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: false
     }
   },
   components: {
