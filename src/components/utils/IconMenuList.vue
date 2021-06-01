@@ -6,7 +6,6 @@
         itemCustomClass,
         usingHoverClass ? 'using-default-hover' : ''
       ]"
-      v-for="menu in menus"
       :key="menu.name"
       @click="menu.onClickHandler"
     >
@@ -18,14 +17,16 @@
       />
       <span>{{ menu.name }}</span>
     </li>
-    <li v-if="children">test</li>
+  </ul>
+  <ul v-if="children">
+    <slot name="children" />
   </ul>
 </template>
 
 <script lang="ts">
 import { defineAsyncComponent, defineComponent, PropType } from 'vue'
 
-type IconMenus = {
+export type IconMenu = {
   name: string
   iconType: string
   onClickHandler?: (event: unknown) => unknown
@@ -33,8 +34,9 @@ type IconMenus = {
 
 export default defineComponent({
   props: {
-    menus: {
-      type: Array as PropType<IconMenus[]>
+    menu: {
+      type: Object as PropType<IconMenu>,
+      required: true
     },
     itemCustomClass: String as PropType<string>,
     iconCustomClass: String as PropType<string>,
@@ -51,8 +53,7 @@ export default defineComponent({
   },
   components: {
     Feather: defineAsyncComponent(() => import('./Feather.vue'))
-  },
-  setup(props) {}
+  }
 })
 </script>
 

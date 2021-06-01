@@ -57,6 +57,9 @@
     "plugins": [
       "prettier"
     ],
+    "globals": {
+      "PageMeta": false
+    },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended",
