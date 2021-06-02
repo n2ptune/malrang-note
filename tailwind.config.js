@@ -75,9 +75,10 @@ module.exports = {
             },
             'ol > li': {
               '&::before': {
-                'background-color': theme(lightModeBaseColor) + ' !important'
+                'background-color': 'transparent !important',
+                color: 'currentColor'
               },
-              '& p': {
+              '& > *': {
                 margin: '0 !important'
               }
             }
@@ -126,9 +127,10 @@ module.exports = {
             },
             'ol > li': {
               '&::before': {
-                'background-color': theme(darkModeBaseColor) + ' !important'
+                'background-color': 'transparent !important',
+                color: 'currentColor'
               },
-              '& p': {
+              '& > *': {
                 margin: '0 !important'
               }
             }

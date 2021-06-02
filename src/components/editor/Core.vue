@@ -1,15 +1,5 @@
 <template>
   <EditorContent :editor="editor" />
-  <!-- <FloatingMenu v-if="editor" :editor="editor" class="floating-menu">
-    <button
-      v-for="menu in floatingMenus"
-      :key="menu.eventName"
-      @click="() => floatMenuHandler(menu.eventName)"
-      :class="menu.activeFn(editor)"
-    >
-      {{ menu.title }}
-    </button>
-  </FloatingMenu> -->
   <BubbleMenu v-if="editor" :editor="editor" class="bubble-menu">
     <button
       v-for="menu in bubbleMenus"
@@ -24,23 +14,16 @@
 
 <script lang="ts">
 import { defineComponent, onUnmounted, reactive, Ref } from 'vue'
-import {
-  useEditor,
-  EditorContent,
-  // FloatingMenu,
-  BubbleMenu,
-  Editor
-} from '@tiptap/vue-3'
+import { useEditor, EditorContent, BubbleMenu, Editor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
-import { bubbleMenus, floatingMenus } from './menu'
+import { bubbleMenus, BubbleEvents } from './menu'
 
 export default defineComponent({
   components: {
     EditorContent,
-    // FloatingMenu,
     BubbleMenu
   },
   emits: ['init'],
@@ -58,22 +41,7 @@ export default defineComponent({
       }
     }) as Ref<Editor>
 
-    const floatMenuEvents = reactive({
-      onFloatTopHeading() {
-        editor.value.chain().focus().toggleHeading({ level: 1 }).run()
-      },
-      onFloatHeading() {
-        editor.value.chain().focus().toggleHeading({ level: 2 }).run()
-      },
-      onFloatSubHeading() {
-        editor.value.chain().focus().toggleHeading({ level: 3 }).run()
-      },
-      onFloatList() {
-        editor.value.chain().focus().toggleBulletList().run()
-      }
-    })
-
-    const bubbleMenuEvents = reactive({
+    const bubbleMenuEvents = reactive<BubbleEvents>({
       onBubbleBold() {
         editor.value.chain().focus().toggleBold().run()
       },
@@ -92,12 +60,8 @@ export default defineComponent({
 
     return {
       editor,
-      floatingMenus,
       bubbleMenus,
-      floatMenuHandler(eventName: keyof typeof floatMenuEvents) {
-        floatMenuEvents[eventName]()
-      },
-      bubbleMenuHandler(eventName: keyof typeof bubbleMenuEvents) {
+      bubbleMenuHandler(eventName: keyof BubbleEvents) {
         bubbleMenuEvents[eventName]()
       }
     }
@@ -141,15 +105,22 @@ export default defineComponent({
     @apply hidden;
   }
 
-  & ul > li {
+  & ul > li,
+  & ol > li {
     @apply my-1 !important pl-5;
 
     &::before {
-      @apply top-2 bg-brand-black-tippy dark:bg-gray-100 !important;
+      @apply text-current;
     }
 
     & p {
       @apply my-1 !important;
+    }
+  }
+
+  & ul > li {
+    &::before {
+      @apply top-2 bg-brand-black-tippy dark:bg-gray-100;
     }
   }
 }

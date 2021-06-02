@@ -1,50 +1,18 @@
 import { Editor } from '@tiptap/vue-3'
 
-type FloatingMenu = {
-  title: string
-  eventName: string
-  activeFn?: (editor: Editor) => unknown
-  icon?: string
+export type BubbleEvents = {
+  onBubbleBold: () => void
+  onBubbleItalic: () => void
+  onBubbleStrike: () => void
+  onHighlight: () => void
 }
 
-export const floatingMenus: FloatingMenu[] = [
-  {
-    title: '제목',
-    eventName: 'onFloatTopHeading',
-    activeFn: (editor) => {
-      return {
-        'is-active': editor.isActive('heading', { level: 1 })
-      }
-    }
-  },
-  {
-    title: '머리말',
-    eventName: 'onFloatHeading',
-    activeFn: (editor) => {
-      return {
-        'is-active': editor.isActive('heading', { level: 2 })
-      }
-    }
-  },
-  {
-    title: '부제목',
-    eventName: 'onFloatSubHeading',
-    activeFn: (editor) => {
-      return {
-        'is-active': editor.isActive('heading', { level: 3 })
-      }
-    }
-  },
-  {
-    title: '리스트',
-    eventName: 'onFloatList',
-    activeFn: (editor) => {
-      return {
-        'is-active': editor.isActive('bullet')
-      }
-    }
-  }
-]
+export type FloatingMenu = {
+  title: string
+  eventName: keyof BubbleEvents
+  activeFn: (editor: Editor) => unknown
+  icon?: string
+}
 
 export const bubbleMenus: FloatingMenu[] = [
   {

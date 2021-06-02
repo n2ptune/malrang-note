@@ -145,6 +145,8 @@
       viewBox="0 0 24 24"
       width="24"
       height="24"
+      @click="editor.chain().focus().toggleBulletList().run()"
+      :class="{ 'is-active': editor.isActive('bullet') }"
     >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
@@ -157,6 +159,8 @@
       viewBox="0 0 24 24"
       width="24"
       height="24"
+      @click="editor.chain().focus().toggleOrderedList().run()"
+      :class="{ 'is-active': editor.isActive('order') }"
     >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
