@@ -173,6 +173,8 @@
       viewBox="0 0 24 24"
       width="24"
       height="24"
+      @click="editor.chain().focus().toggleCodeBlock().run()"
+      :class="{ 'is-active': editor.isActive('code') }"
     >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
@@ -185,6 +187,8 @@
       viewBox="0 0 24 24"
       width="24"
       height="24"
+      @click="insertLink"
+      :class="{ 'is-active': editor.isActive('link') }"
     >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
@@ -240,6 +244,18 @@ export default defineComponent({
     editor: {
       type: Object as PropType<Editor>,
       required: true
+    }
+  },
+  setup(props) {
+    return {
+      insertLink: () => {
+        if (props.editor.isActive('link')) {
+          props.editor.chain().focus().unsetLink().run()
+        } else {
+          const url = window.prompt('URL') as string
+          props.editor.chain().focus().setLink({ href: url }).run()
+        }
+      }
     }
   }
 })

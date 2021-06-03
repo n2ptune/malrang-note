@@ -19,6 +19,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Highlight from '@tiptap/extension-highlight'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
+import Link from '@tiptap/extension-link'
 import { bubbleMenus, BubbleEvents } from './menu'
 
 export default defineComponent({
@@ -30,7 +31,7 @@ export default defineComponent({
   setup(_, { emit }) {
     const editor = useEditor({
       content: '<h1>running with tiptap vue 3 components ⚡️</h1>'.repeat(50),
-      extensions: [StarterKit, Highlight, Underline, TextAlign],
+      extensions: [StarterKit, Highlight, Underline, TextAlign, Link],
       editorProps: {
         attributes: {
           class: 'core-editor'
