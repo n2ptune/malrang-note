@@ -2,7 +2,7 @@
   <div>
     <IconMenuList :menu="sharedMenu" children>
       <template v-slot:children>
-        <li v-for="meta in sharedPageMeta" :key="meta.title">
+        <li v-for="meta in sharedPageMeta" :key="meta.title" class="my-1 pl-3">
           {{ meta.title }}
         </li>
       </template>
@@ -42,3 +42,5 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="postcss" scoped></style>

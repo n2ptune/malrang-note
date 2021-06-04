@@ -18,7 +18,7 @@
       <span>{{ menu.name }}</span>
     </li>
   </ul>
-  <ul v-if="children">
+  <ul v-if="children" class="pt-1">
     <slot name="children" />
   </ul>
 </template>
