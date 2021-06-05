@@ -75,11 +75,3 @@ export const readPrivatePage: () => Promise<PrivatePageModuleState> = async () =
     page: myDoc.data() as PickValue<PrivatePageModuleState, 'page'>
   }
 }
-
-// export const readPrivateContents: () => Promise<unknown> = async () => {
-//   const uid = getAuth().currentUser?.uid
-
-//   if (!uid) throw new Error('Invalid User')
-
-//   const myDoc = await getMyPrivateDoc(uid)
-// }

@@ -3,7 +3,6 @@
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
-  type PageMeta = PageMeta
   export default component
 }
 
