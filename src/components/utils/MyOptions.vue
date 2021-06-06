@@ -39,7 +39,8 @@ export default defineComponent({
         return {
           content: name,
           arrow: true,
-          placement: 'top'
+          placement: 'top',
+          animateFill: true
         }
       }
     }

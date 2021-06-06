@@ -18,7 +18,7 @@
       <span>{{ menu.name }}</span>
     </li>
   </ul>
-  <ul v-if="children" class="pt-1">
+  <ul v-if="children" class="children-wrapper">
     <slot name="children" />
   </ul>
 </template>
@@ -76,6 +76,14 @@ export default defineComponent({
         @apply mr-2;
       }
     }
+  }
+}
+.children-wrapper {
+  @apply pt-1;
+
+  &::v-deep(li) {
+    @apply text-gray-400 transition-colors duration-300 cursor-pointer pl-7 my-1
+    hover:text-white;
   }
 }
 </style>
