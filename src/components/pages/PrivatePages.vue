@@ -8,6 +8,7 @@
 import { useStore } from '@/store'
 import { computed, defineComponent, reactive, watch } from 'vue'
 import IconMenuList, { IconMenu } from '@/components/utils/IconMenuList.vue'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: {
@@ -15,15 +16,18 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     store.dispatch('private/dispatchPrivatePage')
 
-    const privatePage = computed(() => store.getters['private/getPrivatePage'])
+    const privatePage = computed<PageMeta>(
+      () => store.getters['private/getPrivatePage']
+    )
 
     const privateMenu = reactive<IconMenu>({
       name: '',
       iconType: 'book-open',
       onClickHandler: () => {
-        console.log('hello world')
+        router.push(`/edit/${privatePage.value.uid}`)
       }
     })
 
