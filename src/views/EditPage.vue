@@ -16,6 +16,7 @@ import { computed, defineComponent } from 'vue'
 import Edit from '@/components/layouts/Edit.vue'
 import EditorWrapper from '@/components/editor/Wrapper.vue'
 import { useRouter } from 'vue-router'
+import { readPrivateNotes } from '@/services/notes/read'
 
 export default defineComponent({
   components: {
@@ -26,6 +27,9 @@ export default defineComponent({
     const router = useRouter()
     const currentPageUid = computed(() => router.currentRoute.value.params.uid)
     const isShared = computed(() => currentPageUid.value.length === 36)
+    // const noteList = isShared.value ? [] : await readPrivateNotes()
+
+    // console.log(noteList)
 
     return {
       currentPageUid,
