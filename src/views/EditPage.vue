@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import Edit from '@/components/layouts/Edit.vue'
 import EditorWrapper from '@/components/editor/Wrapper.vue'
 import { useRouter } from 'vue-router'
@@ -27,9 +27,18 @@ export default defineComponent({
     const router = useRouter()
     const currentPageUid = computed(() => router.currentRoute.value.params.uid)
     const isShared = computed(() => currentPageUid.value.length === 36)
-    // const noteList = isShared.value ? [] : await readPrivateNotes()
+    const noteList = ref<unknown[]>([])
 
-    // console.log(noteList)
+    const getNoteList = async () => {
+      if (isShared.value) {
+        noteList.value = []
+      } else {
+        noteList.value = (await readPrivateNotes()) as unknown[]
+        console.log(noteList.value.length)
+      }
+    }
+
+    getNoteList()
 
     return {
       currentPageUid,
