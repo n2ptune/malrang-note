@@ -1,8 +1,9 @@
 <template>
   <Edit>
     <template #center>
-      TODO: NOTE LIST TARGET PAGE_UID = {{ currentPageUid }}
-      <strong>isShared: {{ isShared }}</strong>
+      <!-- TODO: NOTE LIST TARGET PAGE_UID = {{ currentPageUid }}
+      <strong>isShared: {{ isShared }}</strong> -->
+      <List />
     </template>
     <template #right>
       <!-- <Core /> -->
@@ -12,16 +13,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, provide, ref, readonly } from 'vue'
 import Edit from '@/components/layouts/Edit.vue'
 import EditorWrapper from '@/components/editor/Wrapper.vue'
 import { useRouter } from 'vue-router'
 import { readPrivateNotes } from '@/services/notes/read'
+import List from '@/components/notes/List.vue'
 
 export default defineComponent({
   components: {
     Edit,
-    EditorWrapper
+    EditorWrapper,
+    List
   },
   setup() {
     const router = useRouter()
@@ -39,6 +42,8 @@ export default defineComponent({
     }
 
     getNoteList()
+    provide('noteList', readonly(noteList))
+    provide('isShared', readonly(isShared))
 
     return {
       currentPageUid,
