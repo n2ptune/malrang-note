@@ -10,12 +10,13 @@
 </template>
 
 <script lang="ts">
+import { NoteListKey } from '@/views/EditPage.vue'
 import { defineComponent, inject } from 'vue'
 import Feather from '../utils/Feather.vue'
 
 export default defineComponent({
   setup() {
-    const noteList = inject('noteList')
+    const noteList = inject(NoteListKey)
     const isShared = inject('isShared')
 
     return {

@@ -13,12 +13,22 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, ref, readonly } from 'vue'
+import {
+  computed,
+  defineComponent,
+  provide,
+  ref,
+  readonly,
+  InjectionKey,
+  Ref
+} from 'vue'
 import Edit from '@/components/layouts/Edit.vue'
 import EditorWrapper from '@/components/editor/Wrapper.vue'
 import { useRouter } from 'vue-router'
-import { readPrivateNotes } from '@/services/notes/read'
+import { readPrivateNotes, NoteList } from '@/services/notes/read'
 import List from '@/components/notes/List.vue'
+
+export const NoteListKey: InjectionKey<Ref<NoteList>> = Symbol('NoteList')
 
 export default defineComponent({
   components: {
@@ -30,19 +40,18 @@ export default defineComponent({
     const router = useRouter()
     const currentPageUid = computed(() => router.currentRoute.value.params.uid)
     const isShared = computed(() => currentPageUid.value.length === 36)
-    const noteList = ref<unknown[]>([])
+    const noteList = ref<NoteList>([])
 
     const getNoteList = async () => {
       if (isShared.value) {
         noteList.value = []
       } else {
-        noteList.value = (await readPrivateNotes()) as unknown[]
-        console.log(noteList.value.length)
+        noteList.value = await readPrivateNotes()
       }
     }
 
     getNoteList()
-    provide('noteList', readonly(noteList))
+    provide(NoteListKey, readonly(noteList))
     provide('isShared', readonly(isShared))
 
     return {
