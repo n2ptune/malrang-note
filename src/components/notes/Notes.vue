@@ -1,7 +1,7 @@
 <template>
   <div class="mt-4 space-y-2">
     <div v-for="note in noteList" :key="note" class="">
-      {{ note.type }}
+      {{ note.type }} {{ note.created.seconds }}
     </div>
   </div>
 </template>

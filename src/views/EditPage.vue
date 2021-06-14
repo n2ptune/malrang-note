@@ -20,7 +20,8 @@ import {
   ref,
   readonly,
   InjectionKey,
-  Ref
+  Ref,
+  watchEffect
 } from 'vue'
 import Edit from '@/components/layouts/Edit.vue'
 import EditorWrapper from '@/components/editor/Wrapper.vue'
@@ -49,6 +50,8 @@ export default defineComponent({
         noteList.value = await readPrivateNotes()
       }
     }
+
+    watchEffect(() => getNoteList())
 
     getNoteList()
     provide(NoteListKey, readonly(noteList))
