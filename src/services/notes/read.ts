@@ -12,6 +12,7 @@ export type Note = {
   author: string
   created: Timestamp
   type: DBNoteType
+  title: string
 }
 
 export type NoteList = Note[]
