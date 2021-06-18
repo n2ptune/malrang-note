@@ -13,6 +13,11 @@ export type Note = {
   created: Timestamp
   type: DBNoteType
   title: string
+  content: unknown
+  tags?: string[]
+  publish: boolean
+  reactions: unknown
+  comments: unknown
 }
 
 export type NoteList = Note[]
