@@ -18,7 +18,6 @@ import {
   defineComponent,
   provide,
   ref,
-  readonly,
   InjectionKey,
   Ref,
   watchEffect
@@ -54,8 +53,8 @@ export default defineComponent({
     watchEffect(() => getNoteList())
 
     getNoteList()
-    provide(NoteListKey, readonly(noteList))
-    provide('isShared', readonly(isShared))
+    provide(NoteListKey, noteList)
+    provide('isShared', isShared)
 
     return {
       currentPageUid,
