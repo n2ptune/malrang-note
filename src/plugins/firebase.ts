@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth'
+import {
+  getAuth,
+  browserLocalPersistence,
+  setPersistence,
+  signInWithEmailAndPassword
+} from 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
 
@@ -12,5 +17,7 @@ initializeApp({
   appId: process.env.VUE_APP_FB_APP_ID,
   measurementId: process.env.VUE_APP_FB_MEASUREMENT_ID
 })
+
+signInWithEmailAndPassword(getAuth(), 'vue2598@gmail.com', '12345a')
 
 setPersistence(getAuth(), browserLocalPersistence)

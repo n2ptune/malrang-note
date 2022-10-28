@@ -20,6 +20,10 @@ import Highlight from '@tiptap/extension-highlight'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Link from '@tiptap/extension-link'
+import Table from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
 import { bubbleMenus, BubbleEvents } from './menu'
 
 export default defineComponent({
@@ -31,7 +35,17 @@ export default defineComponent({
   setup(_, { emit }) {
     const editor = useEditor({
       content: '<h1>running with tiptap vue 3 components ⚡️</h1>'.repeat(50),
-      extensions: [StarterKit, Highlight, Underline, TextAlign, Link],
+      extensions: [
+        StarterKit,
+        Highlight,
+        Underline,
+        TextAlign,
+        Link,
+        Table,
+        TableCell,
+        TableHeader,
+        TableRow
+      ],
       editorProps: {
         attributes: {
           class: 'core-editor'
@@ -44,16 +58,16 @@ export default defineComponent({
 
     const bubbleMenuEvents = reactive<BubbleEvents>({
       onBubbleBold() {
-        editor.value.chain().focus().toggleBold().run()
+        editor.value.chain().focus().toggleBold()
       },
       onBubbleItalic() {
-        editor.value.chain().focus().toggleItalic().run()
+        editor.value.chain().focus().toggleItalic()
       },
       onBubbleStrike() {
-        editor.value.chain().focus().toggleStrike().run()
+        editor.value.chain().focus().toggleStrike()
       },
       onHighlight() {
-        editor.value.chain().focus().toggleHighlight().run()
+        editor.value.chain().focus().toggleHighlight()
       }
     })
 

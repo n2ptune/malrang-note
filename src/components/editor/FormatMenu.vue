@@ -232,12 +232,14 @@
       <path fill="none" d="M0 0h24v24H0z" />
       <path d="M3 4h18v2H3V4zm4 15h14v2H7v-2zm-4-5h18v2H3v-2zm4-5h14v2H7V9z" />
     </svg>
+    <Button @click="createTable"> 테이블 </Button>
   </div>
 </template>
 
 <script lang="ts">
 import { Editor } from '@tiptap/vue-3'
 import { defineComponent, PropType } from 'vue'
+import Button from '../common/Button.vue'
 
 export default defineComponent({
   props: {
@@ -246,15 +248,23 @@ export default defineComponent({
       required: true
     }
   },
+  components: { Button },
   setup(props) {
     return {
       insertLink: () => {
         if (props.editor.isActive('link')) {
-          props.editor.chain().focus().unsetLink().run()
+          props.editor.chain().focus().unsetLink()
         } else {
           const url = window.prompt('URL') as string
-          props.editor.chain().focus().setLink({ href: url }).run()
+          props.editor.chain().focus().setLink({ href: url })
         }
+      },
+      createTable: () => {
+        props.editor
+          .chain()
+          .focus()
+          .insertTable({ cols: 3, rows: 3, withHeaderRow: true })
+          .run()
       }
     }
   }
